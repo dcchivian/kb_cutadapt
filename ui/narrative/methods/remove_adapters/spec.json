@@ -1,13 +1,14 @@
 {
     "ver": null,
+    "contact": null,
+
     "authors": [ "msneddon" ],
-    "contact": "",
-    "categories": ["active"],
+    "categories": ["reads"],
+
     "widgets": {
         "input": null,
         "output": null
     },
-
 
     "parameters": [ 
         {
