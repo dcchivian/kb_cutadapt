@@ -41,7 +41,7 @@
                 {
                     "input_parameter": "input_reads",
                     "target_property": "input_reads",
-                    "target_type_transform": "resolved_ref"
+                    "target_type_transform": "resolved-ref"
                 }
             ],
             "output_mapping": [
