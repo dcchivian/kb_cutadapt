@@ -33,6 +33,17 @@ class cutadapt(object):
             trust_all_ssl_certificates=trust_all_ssl_certificates,
             auth_svc=auth_svc)
 
+    def remove_adapters(self, params, context=None):
+        """
+        :param params: instance of type "RemoveAdapetersParams" -> structure:
+           parameter "output_workspace" of String, parameter "input_reads" of
+           type "ws_ref" (@ref ws)
+        :returns: instance of type "RemoveAdaptersResult" -> structure:
+        """
+        return self._client.call_method(
+            'cutadapt.remove_adapters',
+            [params], self._service_ver, context)
+
     def status(self, context=None):
         return self._client.call_method('cutadapt.status',
                                         [], self._service_ver, context)
