@@ -5,14 +5,12 @@ module cutadapt {
     
 
     /* @ref ws */
-    typedef string ref;
-
-    typedef string ws_name_or_id;
-
+    typedef string ws_ref;
 
 
     typedef structure {
-        ws_name_or_id output_workspace;
+        string output_workspace;
+        ws_ref input_reads;
 
 
     } RemoveAdapetersParams;

@@ -1,27 +1,32 @@
 {
-    "ver": "0.0.1",
-    "authors": [
-        "msneddon"
-    ],
+    "ver": null,
+    "authors": [ "msneddon" ],
     "contact": "",
     "categories": ["active"],
     "widgets": {
         "input": null,
         "output": null
     },
+
+
     "parameters": [ 
         {
-            "id": "parameter_1",
-            "optional": true,
+            "id": "input_reads",
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "text",
             "text_options": {
-                "valid_ws_types": [ ]
+                "valid_ws_types": [
+                    "KBaseFile.PairedEndLibrary",
+                    "KBaseFile.SingleEndLibrary"
+                ]
             }
         }
     ],
+
+
     "behavior": {
         "service-mapping": {
             "url": "",
@@ -31,6 +36,11 @@
                 {
                     "narrative_system_variable": "workspace",
                     "target_property": "output_workspace"
+                },
+                {
+                    "input_parameter": "input_reads",
+                    "target_property": "input_reads",
+                    "target_type_transform": "resolved_ref"
                 }
             ],
             "output_mapping": [

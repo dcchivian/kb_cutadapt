@@ -24,13 +24,11 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    parameter_1 :
+    input_reads :
         ui-name : |
-            First parameter
+            Read Library
         short-hint : |
             The first parameter
-        long-hint  : |
-            The first parameter that needs to be entered to drive the method. This might be the first of many.
 
 description : |
     <p>Uses cutadapt to remove adapter sequences from Read Libraries</p>
