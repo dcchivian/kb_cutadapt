@@ -1,0 +1,34 @@
+#
+# define display information
+#
+name: Remove Adapter Sequences with cutadapt
+
+tooltip: |
+    Perform some kind of method
+
+screenshots: []
+
+icon: icon.png
+
+#
+# define a set of similar methods that might be useful to the user
+#
+suggestions:
+    apps:
+        related: [kb_trimmomatic/run_trimmomatic]
+        next: []
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    input_reads :
+        ui-name : Read Library
+        short-hint : The first parameter
+
+    3P_adapter_sequence:
+        ui-name: Adapter Sequence
+        short-hint: Something
+
+description : |
+    <p>Uses cutadapt to remove adapter sequences from Read Libraries</p>

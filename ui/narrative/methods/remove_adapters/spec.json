@@ -1,0 +1,94 @@
+{
+    "ver": null,
+    "contact": null,
+
+    "authors": [ "msneddon" ],
+    "categories": ["reads"],
+
+    "widgets": {
+        "input": null,
+        "output": null
+    },
+
+    "parameters": [ 
+        {
+            "id": "input_reads",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [
+                    "KBaseFile.PairedEndLibrary",
+                    "KBaseFile.SingleEndLibrary"
+                ]
+            }
+        },
+
+        {
+            "id": "3P_adapter_sequence",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": { }
+        },
+        {
+            "id": "3P_anchored",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "checkbox"
+        },
+        {
+            "id": "3P_saved_reads_output",
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": {
+                "is_output_type": 1,
+                "valid_ws_types": [
+                        "KBaseFile.PairedEndLibrary",
+                        "KBaseFile.SingleEndLibrary"
+                    ]
+                }
+            }
+        }
+
+
+
+    ],
+
+
+    
+
+
+
+    "behavior": {
+        "service-mapping": {
+            "url": "",
+            "name": "cutadapt",
+            "method": "remove_adapters",
+            "input_mapping": [
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "output_workspace"
+                },
+                {
+                    "input_parameter": "input_reads",
+                    "target_property": "input_reads",
+                    "target_type_transform": "resolved-ref"
+                }
+            ],
+            "output_mapping": [
+
+            ]
+        }
+    },
+    "job_id_output_field": "docker"
+}
