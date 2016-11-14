@@ -1,7 +1,7 @@
-SERVICE = cutadapt
-SERVICE_CAPS = cutadapt
-SPEC_FILE = cutadapt.spec
-URL = https://kbase.us/services/cutadapt
+SERVICE = kb_cutadapt
+SERVICE_CAPS = kb_cutadapt
+SPEC_FILE = kb_cutadapt.spec
+URL = https://kbase.us/services/kb_cutadapt
 DIR = $(shell pwd)
 LIB_DIR = lib
 SCRIPTS_DIR = scripts
@@ -55,7 +55,7 @@ build-test-script:
 	echo 'export KB_AUTH_TOKEN=`cat /kb/module/work/token`' >> $(TEST_DIR)/$(TEST_SCRIPT_NAME)
 	echo 'export PYTHONPATH=$$script_dir/../$(LIB_DIR):$$PATH:$$PYTHONPATH' >> $(TEST_DIR)/$(TEST_SCRIPT_NAME)
 	echo 'cd $$script_dir/../$(TEST_DIR)' >> $(TEST_DIR)/$(TEST_SCRIPT_NAME)
-	echo 'python -m nose --with-coverage --cover-package=cutadaptTest --cover-html --cover-html-dir=/kb/module/work/cover_html .' >> $(TEST_DIR)/$(TEST_SCRIPT_NAME)
+	echo 'python -m nose --with-coverage --cover-package=$(SERVICE_CAPS) --cover-html --cover-html-dir=/kb/module/work/test_coverage .' >> $(TEST_DIR)/$(TEST_SCRIPT_NAME)
 	chmod +x $(TEST_DIR)/$(TEST_SCRIPT_NAME)
 
 test:
@@ -64,4 +64,3 @@ test:
 
 clean:
 	rm -rfv $(LBIN_DIR)
-	

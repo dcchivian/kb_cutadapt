@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
-import os
-import json
+import os  # noqa: F401
+import json  # noqa: F401
 import time
 import requests
 
@@ -11,14 +11,14 @@ try:
 except:
     from configparser import ConfigParser  # py3
 
-from pprint import pprint
+from pprint import pprint  # noqa: F401
 
 from biokbase.workspace.client import Workspace as workspaceService
-from cutadapt.cutadaptImpl import cutadapt
-from cutadapt.cutadaptServer import MethodContext
+from kb_cutadapt.kb_cutadaptImpl import kb_cutadapt
+from kb_cutadapt.kb_cutadaptServer import MethodContext
 
 
-class cutadaptTest(unittest.TestCase):
+class kb_cutadaptTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -32,7 +32,7 @@ class cutadaptTest(unittest.TestCase):
         cls.ctx.update({'token': token,
                         'user_id': user_id,
                         'provenance': [
-                            {'service': 'cutadapt',
+                            {'service': 'kb_cutadapt',
                              'method': 'please_never_use_it_in_production',
                              'method_params': []
                              }],
@@ -41,11 +41,11 @@ class cutadaptTest(unittest.TestCase):
         cls.cfg = {}
         config = ConfigParser()
         config.read(config_file)
-        for nameval in config.items('cutadapt'):
+        for nameval in config.items('kb_cutadapt'):
             cls.cfg[nameval[0]] = nameval[1]
         cls.wsURL = cls.cfg['workspace-url']
         cls.wsClient = workspaceService(cls.wsURL, token=token)
-        cls.serviceImpl = cutadapt(cls.cfg)
+        cls.serviceImpl = kb_cutadapt(cls.cfg)
 
     @classmethod
     def tearDownClass(cls):
@@ -60,8 +60,8 @@ class cutadaptTest(unittest.TestCase):
         if hasattr(self.__class__, 'wsName'):
             return self.__class__.wsName
         suffix = int(time.time() * 1000)
-        wsName = "test_cutadapt_" + str(suffix)
-        ret = self.getWsClient().create_workspace({'workspace': wsName})
+        wsName = "test_kb_cutadapt_" + str(suffix)
+        ret = self.getWsClient().create_workspace({'workspace': wsName})  # noqa
         self.__class__.wsName = wsName
         return wsName
 
@@ -71,10 +71,11 @@ class cutadaptTest(unittest.TestCase):
     def getContext(self):
         return self.__class__.ctx
 
-    # NOTE: According to Python unittest naming rules test method names should start from 'test'.
+    # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
     def test_your_method(self):
-        # Prepare test objects in workspace if needed using 
-        # self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': []})
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
         #
         # Run your method by
         # ret = self.getImpl().your_method(self.getContext(), parameters...)
@@ -82,4 +83,3 @@ class cutadaptTest(unittest.TestCase):
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
         pass
-        

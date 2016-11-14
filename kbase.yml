@@ -1,8 +1,8 @@
 module-name:
-    cutadapt
+    kb_cutadapt
 
 module-description:
-    A set of Apps that wrap functionality of the cutadapt tool.
+    A KBase module
 
 service-language:
     python

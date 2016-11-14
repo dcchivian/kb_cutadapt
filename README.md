@@ -1,5 +1,6 @@
+[![Build Status](https://travis-ci.org/msneddon/kb_cutadapt.svg?branch=master)](https://travis-ci.org/msneddon/kb_cutadapt)
 
 # kb_cutadapt
 ---
 
-This repository is a KBase wrapper that exposes some of the functionality of the cutadapt tool as a set of KBase Apps.
+This is the basic readme for this module. Include any usage or deployment instructions and links to other documentation here.
