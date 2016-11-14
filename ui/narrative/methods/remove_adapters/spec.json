@@ -26,6 +26,32 @@
             }
         },
 
+
+        {
+            "id": "5P_adapter_sequence",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": { }
+        },
+        {
+            "id": "5P_anchored",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [0],
+            "field_type": "checkbox",
+            "checkbox_options": {
+                "checked_value": 1,
+                "unchecked_value": 0
+            }
+        },
+
+
+
+
         {
             "id": "3P_adapter_sequence",
             "optional": false,
@@ -40,23 +66,11 @@
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": null,
-            "field_type": "checkbox"
-        },
-        {
-            "id": "3P_saved_reads_output",
-            "optional": true,
-            "advanced": false,
-            "allow_multiple": false,
-            "default_values": null,
-            "field_type": "text",
-            "text_options": {
-                "is_output_type": 1,
-                "valid_ws_types": [
-                        "KBaseFile.PairedEndLibrary",
-                        "KBaseFile.SingleEndLibrary"
-                    ]
-                }
+            "default_values": [0],
+            "field_type": "checkbox",
+            "checkbox_options": {
+                "checked_value": 1,
+                "unchecked_value": 0
             }
         }
 
@@ -65,14 +79,28 @@
     ],
 
 
-    
-
+    "parameter-groups": [
+        {
+            "id": "5P",
+            "parameters": ["5P_adapter_sequence", "5P_anchored"],
+            "optional": true,
+            "allow_multiple": false,
+            "with_border": true 
+        },
+        {
+            "id": "3P",
+            "parameters": ["3P_adapter_sequence", "3P_anchored"],
+            "optional": true,
+            "allow_multiple": false,
+            "with_border": true 
+        }
+   ],
 
 
     "behavior": {
         "service-mapping": {
             "url": "",
-            "name": "cutadapt",
+            "name": "kb_cutadapt",
             "method": "remove_adapters",
             "input_mapping": [
                 {
@@ -83,6 +111,14 @@
                     "input_parameter": "input_reads",
                     "target_property": "input_reads",
                     "target_type_transform": "resolved-ref"
+                },
+                {
+                    "input_parameter": "5P",
+                    "target_property": "five_prime"
+                },
+                {
+                    "input_parameter": "3P",
+                    "target_property": "three_prime"
                 }
             ],
             "output_mapping": [
@@ -90,5 +126,6 @@
             ]
         }
     },
+
     "job_id_output_field": "docker"
 }

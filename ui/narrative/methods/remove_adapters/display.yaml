@@ -26,9 +26,34 @@ parameters :
         ui-name : Read Library
         short-hint : The first parameter
 
-    3P_adapter_sequence:
-        ui-name: Adapter Sequence
+    5P_adapter_sequence:
+        ui-name: Sequence
         short-hint: Something
+    5P_anchored:
+        ui-name: Anchored
+        short-hint: Something
+
+
+    3P_adapter_sequence:
+        ui-name: Sequence
+        short-hint: Something
+    3P_anchored:
+        ui-name: Sequence
+        short-hint: Something
+
+
+
+parameter-groups:
+    5P: 
+        ui-name: |
+            5' Adapter
+        short-hint: |
+            Options for trimming adapters from the 5' end
+    3P:
+        ui-name: |
+            3' Adapter
+        short-hint: |
+            Options for trimming adapters from the 3' end
 
 description : |
     <p>Uses cutadapt to remove adapter sequences from Read Libraries</p>
