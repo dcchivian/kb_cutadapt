@@ -28,7 +28,7 @@
 
 
         {
-            "id": "5P_adapter_sequence",
+            "id": "adapter_sequence_5P",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
@@ -37,7 +37,30 @@
             "text_options": { }
         },
         {
-            "id": "5P_anchored",
+            "id": "anchored_5P",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [1],
+            "field_type": "checkbox",
+            "checkbox_options": {
+                "checked_value": 1,
+                "unchecked_value": 0
+            }
+        },
+
+
+        {
+            "id": "adapter_sequence_3P",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": { }
+        },
+        {
+            "id": "anchored_3P",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
@@ -49,32 +72,46 @@
             }
         },
 
-
-
-
         {
-            "id": "3P_adapter_sequence",
-            "optional": false,
-            "advanced": false,
-            "allow_multiple": false,
-            "default_values": null,
-            "field_type": "text",
-            "text_options": { }
-        },
-        {
-            "id": "3P_anchored",
-            "optional": false,
-            "advanced": false,
+            "id": "linked_adapters",
+            "optional": true,
+            "advanced": true,
             "allow_multiple": false,
             "default_values": [0],
-            "field_type": "checkbox",
+            "field_type" : "checkbox",
             "checkbox_options": {
                 "checked_value": 1,
                 "unchecked_value": 0
+            }
+        },
+
+
+        {
+            "id": "error_tolerance",
+            "optional": true,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [0.1],
+            "field_type" : "text",
+            "text_options" : {
+                "validate_as": "float",
+                "min_float" : 0,
+                "max_float" : 1
+            }
+        },
+
+        {
+            "id": "min_overlap_length",
+            "optional": true,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [3],
+            "field_type" : "text",
+            "text_options" : {
+                "validate_as": "int",
+                "min_int" : 0
             }
         }
-
-
 
     ],
 
@@ -82,14 +119,14 @@
     "parameter-groups": [
         {
             "id": "5P",
-            "parameters": ["5P_adapter_sequence", "5P_anchored"],
+            "parameters": ["adapter_sequence_5P", "anchored_5P"],
             "optional": true,
             "allow_multiple": false,
             "with_border": true 
         },
         {
             "id": "3P",
-            "parameters": ["3P_adapter_sequence", "3P_anchored"],
+            "parameters": ["adapter_sequence_3P", "anchored_3P"],
             "optional": true,
             "allow_multiple": false,
             "with_border": true 
@@ -119,7 +156,20 @@
                 {
                     "input_parameter": "3P",
                     "target_property": "three_prime"
+                },
+                {
+                    "input_parameter": "linked_adapters",
+                    "target_property": "linked_adapters"
+                },
+                {
+                    "input_parameter": "error_tolerance",
+                    "target_property": "error_tolerance"
+                },
+                {
+                    "input_parameter": "min_overlap_length",
+                    "target_property": "min_overlap_length"
                 }
+
             ],
             "output_mapping": [
 

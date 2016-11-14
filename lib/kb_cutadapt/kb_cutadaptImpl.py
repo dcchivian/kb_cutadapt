@@ -25,7 +25,7 @@ class kb_cutadapt:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "git@github.com:kbaseapps/kb_cutadapt"
-    GIT_COMMIT_HASH = "3fb2fc3590e809355d31cf0af906e1056ac2e49e"
+    GIT_COMMIT_HASH = "834e765a557682be464a28fd12850462c75e3e42"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -43,8 +43,20 @@ class kb_cutadapt:
         """
         :param params: instance of type "RemoveAdapetersParams" -> structure:
            parameter "output_workspace" of String, parameter "input_reads" of
-           type "ws_ref" (@ref ws)
+           type "ws_ref" (@ref ws), parameter "five_prime" of type
+           "FivePrimeOptions" (unfortunately, we have to name the fields
+           uniquely between 3' and 5' options due to the current
+           implementation of grouped parameters) -> structure: parameter
+           "sequence_3P" of String, parameter "anchored_3P" of type "boolean"
+           (@range (0, 1)), parameter "three_prime" of type
+           "ThreePrimeOptions" -> structure: parameter "sequence_5P" of
+           String, parameter "anchored_5P" of type "boolean" (@range (0, 1)),
+           parameter "linked_adapters" of type "boolean" (@range (0, 1)),
+           parameter "error_tolerance" of Double, parameter
+           "min_overlap_length" of Long
         :returns: instance of type "RemoveAdaptersResult" -> structure:
+           parameter "report_ref" of String, parameter "output_reads_ref" of
+           String
         """
         # ctx is the context object
         # return variables are: result

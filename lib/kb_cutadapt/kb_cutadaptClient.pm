@@ -125,8 +125,22 @@ $result is a kb_cutadapt.RemoveAdaptersResult
 RemoveAdapetersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	linked_adapters has a value which is a kb_cutadapt.boolean
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
 ws_ref is a string
-RemoveAdaptersResult is a reference to a hash where the following keys are defined
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report_ref has a value which is a string
+	output_reads_ref has a value which is a string
 
 </pre>
 
@@ -139,8 +153,22 @@ $result is a kb_cutadapt.RemoveAdaptersResult
 RemoveAdapetersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	linked_adapters has a value which is a kb_cutadapt.boolean
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
 ws_ref is a string
-RemoveAdaptersResult is a reference to a hash where the following keys are defined
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report_ref has a value which is a string
+	output_reads_ref has a value which is a string
 
 
 =end text
@@ -288,6 +316,37 @@ sub _validate_version {
 
 
 
+=head2 boolean
+
+=over 4
+
+
+
+=item Description
+
+@range (0, 1)
+
+
+=item Definition
+
+=begin html
+
+<pre>
+an int
+</pre>
+
+=end html
+
+=begin text
+
+an int
+
+=end text
+
+=back
+
+
+
 =head2 ws_ref
 
 =over 4
@@ -319,6 +378,77 @@ a string
 
 
 
+=head2 FivePrimeOptions
+
+=over 4
+
+
+
+=item Description
+
+unfortunately, we have to name the fields uniquely between
+3' and 5' options due to the current implementation of grouped
+parameters
+
+
+=item Definition
+
+=begin html
+
+<pre>
+a reference to a hash where the following keys are defined:
+sequence_3P has a value which is a string
+anchored_3P has a value which is a kb_cutadapt.boolean
+
+</pre>
+
+=end html
+
+=begin text
+
+a reference to a hash where the following keys are defined:
+sequence_3P has a value which is a string
+anchored_3P has a value which is a kb_cutadapt.boolean
+
+
+=end text
+
+=back
+
+
+
+=head2 ThreePrimeOptions
+
+=over 4
+
+
+
+=item Definition
+
+=begin html
+
+<pre>
+a reference to a hash where the following keys are defined:
+sequence_5P has a value which is a string
+anchored_5P has a value which is a kb_cutadapt.boolean
+
+</pre>
+
+=end html
+
+=begin text
+
+a reference to a hash where the following keys are defined:
+sequence_5P has a value which is a string
+anchored_5P has a value which is a kb_cutadapt.boolean
+
+
+=end text
+
+=back
+
+
+
 =head2 RemoveAdapetersParams
 
 =over 4
@@ -333,6 +463,11 @@ a string
 a reference to a hash where the following keys are defined:
 output_workspace has a value which is a string
 input_reads has a value which is a kb_cutadapt.ws_ref
+five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+linked_adapters has a value which is a kb_cutadapt.boolean
+error_tolerance has a value which is a float
+min_overlap_length has a value which is an int
 
 </pre>
 
@@ -343,6 +478,11 @@ input_reads has a value which is a kb_cutadapt.ws_ref
 a reference to a hash where the following keys are defined:
 output_workspace has a value which is a string
 input_reads has a value which is a kb_cutadapt.ws_ref
+five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+linked_adapters has a value which is a kb_cutadapt.boolean
+error_tolerance has a value which is a float
+min_overlap_length has a value which is an int
 
 
 =end text
@@ -362,14 +502,20 @@ input_reads has a value which is a kb_cutadapt.ws_ref
 =begin html
 
 <pre>
-a reference to a hash where the following keys are defined
+a reference to a hash where the following keys are defined:
+report_ref has a value which is a string
+output_reads_ref has a value which is a string
+
 </pre>
 
 =end html
 
 =begin text
 
-a reference to a hash where the following keys are defined
+a reference to a hash where the following keys are defined:
+report_ref has a value which is a string
+output_reads_ref has a value which is a string
+
 
 =end text
 

@@ -37,8 +37,20 @@ class kb_cutadapt(object):
         """
         :param params: instance of type "RemoveAdapetersParams" -> structure:
            parameter "output_workspace" of String, parameter "input_reads" of
-           type "ws_ref" (@ref ws)
+           type "ws_ref" (@ref ws), parameter "five_prime" of type
+           "FivePrimeOptions" (unfortunately, we have to name the fields
+           uniquely between 3' and 5' options due to the current
+           implementation of grouped parameters) -> structure: parameter
+           "sequence_3P" of String, parameter "anchored_3P" of type "boolean"
+           (@range (0, 1)), parameter "three_prime" of type
+           "ThreePrimeOptions" -> structure: parameter "sequence_5P" of
+           String, parameter "anchored_5P" of type "boolean" (@range (0, 1)),
+           parameter "linked_adapters" of type "boolean" (@range (0, 1)),
+           parameter "error_tolerance" of Double, parameter
+           "min_overlap_length" of Long
         :returns: instance of type "RemoveAdaptersResult" -> structure:
+           parameter "report_ref" of String, parameter "output_reads_ref" of
+           String
         """
         return self._client.call_method(
             'kb_cutadapt.remove_adapters',
