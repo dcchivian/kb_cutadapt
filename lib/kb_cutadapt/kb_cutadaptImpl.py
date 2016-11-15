@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #BEGIN_HEADER
 
+import os
+
 from pprint import pprint
 
 from kb_cutadapt.CutadaptUtil import CutadaptUtil
@@ -25,7 +27,7 @@ class kb_cutadapt:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "git@github.com:kbaseapps/kb_cutadapt"
-    GIT_COMMIT_HASH = "834e765a557682be464a28fd12850462c75e3e42"
+    GIT_COMMIT_HASH = "2fcc08326e7d1699d2a4b0f53b10e19a5a40f8c8"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -35,6 +37,7 @@ class kb_cutadapt:
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
         self.config = config
+        self.config['SDK_CALLBACK_URL'] = os.environ['SDK_CALLBACK_URL']
         #END_CONSTRUCTOR
         pass
 

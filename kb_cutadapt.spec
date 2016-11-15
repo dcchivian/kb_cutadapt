@@ -13,23 +13,24 @@ module kb_cutadapt {
     3' and 5' options due to the current implementation of grouped
     parameters */
     typedef structure {
-        string sequence_3P;
+        string adapter_sequence_3P;
         boolean anchored_3P;
     } FivePrimeOptions;
 
     typedef structure {
-        string sequence_5P;
+        string adapter_sequence_5P;
         boolean anchored_5P;
     } ThreePrimeOptions;
 
     typedef structure {
         string output_workspace;
+        string output_object_name;
+
         ws_ref input_reads;
 
         FivePrimeOptions five_prime;
         ThreePrimeOptions three_prime;
 
-        boolean linked_adapters;
         float error_tolerance;
         int min_overlap_length;
 

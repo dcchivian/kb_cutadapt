@@ -26,6 +26,10 @@ parameters :
         ui-name : Read Library
         short-hint : The first parameter
 
+    output_object_name :
+        ui-name : Output Read Library
+        short-hint : The first parameter
+
     adapter_sequence_5P:
         ui-name: Sequence
         short-hint: The Adapter sequence to match; wildcards can be marked by 'N'
@@ -40,11 +44,6 @@ parameters :
     anchored_3P:
         ui-name: Anchored
         short-hint: Anchor the match to the 3' end of each read
-
-
-    linked_adapters:
-        ui-name: Linked Adapters?
-        short-hint: If both 5' and 3' adapters are set, only trim the 3' in a read where a 5' was found
 
     error_tolerance:
         ui-name: Error Tolerance (Max Error Rate)

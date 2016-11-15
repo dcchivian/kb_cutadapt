@@ -25,6 +25,21 @@
                 ]
             }
         },
+        {
+            "id": "output_object_name",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": null,
+            "field_type": "text",
+            "text_options": {
+                "is_output_name": true,
+                "valid_ws_types": [
+                    "KBaseFile.PairedEndLibrary",
+                    "KBaseFile.SingleEndLibrary"
+                ]
+            }
+        },
 
 
         {
@@ -72,19 +87,6 @@
             }
         },
 
-        {
-            "id": "linked_adapters",
-            "optional": true,
-            "advanced": true,
-            "allow_multiple": false,
-            "default_values": [0],
-            "field_type" : "checkbox",
-            "checkbox_options": {
-                "checked_value": 1,
-                "unchecked_value": 0
-            }
-        },
-
 
         {
             "id": "error_tolerance",
@@ -99,7 +101,6 @@
                 "max_float" : 1
             }
         },
-
         {
             "id": "min_overlap_length",
             "optional": true,
@@ -150,16 +151,16 @@
                     "target_type_transform": "resolved-ref"
                 },
                 {
+                    "input_parameter": "output_object_name",
+                    "target_property": "output_object_name"
+                },
+                {
                     "input_parameter": "5P",
                     "target_property": "five_prime"
                 },
                 {
                     "input_parameter": "3P",
                     "target_property": "three_prime"
-                },
-                {
-                    "input_parameter": "linked_adapters",
-                    "target_property": "linked_adapters"
                 },
                 {
                     "input_parameter": "error_tolerance",
