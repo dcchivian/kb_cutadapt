@@ -178,23 +178,25 @@ class CutadaptUtil:
     def _build_run(self, cutadapt_runner, params):
         if 'five_prime' in params:
             seq = params['five_prime']['adapter_sequence_5P']
-            anchored = 1
-            if 'anchored_5P' in params['five_prime']:
-                anchored = params['five_prime']['anchored_5P']
-            cutadapt_runner.set_five_prime_option(seq, anchored)
+            if seq:
+                anchored = 1
+                if 'anchored_5P' in params['five_prime']:
+                    anchored = params['five_prime']['anchored_5P']
+                cutadapt_runner.set_five_prime_option(seq, anchored)
 
         if 'three_prime' in params:
             seq = params['three_prime']['adapter_sequence_3P']
-            anchored = 0
-            if 'anchored_3P' in params['three_prime']:
-                anchored = params['three_prime']['anchored_3P']
-            cutadapt_runner.set_three_prime_option(seq, anchored)
+            if seq:
+                anchored = 0
+                if 'anchored_3P' in params['three_prime']:
+                    anchored = params['three_prime']['anchored_3P']
+                cutadapt_runner.set_three_prime_option(seq, anchored)
 
         if 'error_tolerance' in params:
             cutadapt_runner.set_error_tolerance(params['error_tolerance'])
 
         if 'min_overlap_length' in params:
-            cutadapt_runner.set_error_tolerance(params['min_overlap_length'])
+            cutadapt_runner.set_min_overlap(params['min_overlap_length'])
 
 
 

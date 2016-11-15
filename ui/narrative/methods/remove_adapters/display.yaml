@@ -1,10 +1,10 @@
 #
 # define display information
 #
-name: Remove Adapter Sequences with cutadapt
+name: Remove Adapter Sequences from Reads with cutadapt
 
 tooltip: |
-    Perform some kind of method
+    Removes 3' or 5' adapters from reads using cutadapt
 
 screenshots: []
 
@@ -24,11 +24,11 @@ suggestions:
 parameters :
     input_reads :
         ui-name : Read Library
-        short-hint : The first parameter
+        short-hint : The reads to process
 
     output_object_name :
         ui-name : Output Read Library
-        short-hint : The first parameter
+        short-hint : Name for the output read library
 
     adapter_sequence_5P:
         ui-name: Sequence
