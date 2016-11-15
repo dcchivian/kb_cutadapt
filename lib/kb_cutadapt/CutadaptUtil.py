@@ -5,6 +5,7 @@ import subprocess
 from pprint import pprint
 
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
+from KBaseReport.KBaseReportClient import KBaseReport
 
 
 
@@ -56,9 +57,7 @@ class CutadaptRunner:
         self.overlap = int(overlap)
 
 
-    def run(self):
-        cmd = [self.CUTADAPT]
-
+    def _build_adapter_removal_options(self, cmd):
         if self.three_prime:
             cmd.append('-a')
             cmd.append(self.three_prime)
@@ -72,6 +71,12 @@ class CutadaptRunner:
 
         if self.overlap:
             cmd.append('--overlap=' + str(self.overlap))
+
+
+    def run(self):
+        cmd = [self.CUTADAPT]
+
+        self._build_adapter_removal_options(cmd)
 
         if self.output_filename:
             cmd.append('-o')
@@ -105,6 +110,7 @@ class CutadaptRunner:
         if p.returncode != 0:
             raise ValueError('Error running cutadapt, return code: ' +
                              str(p.returncode) + '\n')
+        return report
 
 
 class CutadaptUtil:
@@ -117,22 +123,22 @@ class CutadaptUtil:
 
     def remove_adapters(self, params):
 
-        self.validate_parameters(params)
+        self.validate_remove_adapters_parameters(params)
 
         ca = CutadaptRunner(self.scratch)
         input_file_info = self._stage_input_file(ca, params['input_reads'])
-        output_file = params['output_object_name'] + '.fq'
-        ca.set_output_file(os.path.join(self.scratch, output_file))
-        self._build_run(ca, params)
+        output_file = os.path.join(self.scratch, params['output_object_name'] + '.fq')
+        ca.set_output_file(output_file)
+        report = self._build_run(ca, params)
         ca.run()
 
         return self._package_result(output_file,
                                     params['output_object_name'],
                                     params['output_workspace'],
-                                    input_file_info)
+                                    input_file_info,
+                                    report)
 
-
-    def validate_parameters(self, params):
+    def validate_remove_adapters_parameters(self, params):
         # check for required parameters
         for p in ['input_reads', 'output_workspace', 'output_object_name']:
             if p not in params:
@@ -153,6 +159,8 @@ class CutadaptUtil:
                     raise ValueError('"three_prime.anchored_3P" must be either 0 or 1')
 
         # TODO: validate values of error_tolerance and min_overlap_length
+
+
 
 
     def _stage_input_file(self, cutadapt_runner, ref):
@@ -190,8 +198,7 @@ class CutadaptUtil:
 
 
 
-    def _package_result(self, output_file, output_name, ws_name_or_id, data_info):
-        ru = ReadsUtils(self.callbackURL)
+    def _package_result(self, output_file, output_name, ws_name_or_id, data_info, report):
         upload_params = {
             'fwd_file': output_file,
             'name': output_name
@@ -204,7 +211,6 @@ class CutadaptUtil:
 
         fields = [
             'sequencing_tech',
-            'single_genome',
             'strain',
             'source',
             'read_orientation_outward',
@@ -216,13 +222,32 @@ class CutadaptUtil:
             if f in data_info:
                 upload_params[f] = data_info[f]
 
+        if 'single_genome' in data_info:
+            if data_info['single_genome'] == 'true':
+                upload_params['single_genome'] = 1
+            elif data_info['single_genome'] == 'false':
+                upload_params['single_genome'] = 0
 
+        if data_info['files']['type'] == 'interleaved':
+            upload_params['interleaved'] = 1
+
+        ru = ReadsUtils(self.callbackURL)
         result = ru.upload_reads(upload_params)
-        pprint(result)
 
         # create report
+        kbreport = KBaseReport(self.callbackURL)
+        rep = kbreport.create({
+                              'report': {
+                                  'text_message': report,
+                                  'objects_created': [{
+                                      "ref": str(ws_name_or_id) + '/' + upload_params['name'],
+                                      "description": ''
+                                  }]
+                              },
+                              "workspace_name": str(ws_name_or_id)
+                              })
 
-
-
-        return {}
-
+        return {
+            'report_ref': rep['ref'],
+            'output_reads_ref': result['obj_ref']
+        }

@@ -98,7 +98,7 @@ class kb_cutadaptTest(unittest.TestCase):
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
     def test_basic_options(self):
-       
+
         p1 = {
             'input_reads': self.read1ref,
             'output_workspace': self.getWsName(),
@@ -110,4 +110,10 @@ class kb_cutadaptTest(unittest.TestCase):
         }
 
         ret = self.getImpl().remove_adapters(self.getContext(), p1)
+
+        
+
+        pprint(ret)
+
+
         pass
