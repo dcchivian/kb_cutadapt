@@ -8,7 +8,7 @@ tooltip: |
 
 screenshots: []
 
-icon: icon.png
+icon: cutadapt-pink.png
 
 #
 # define a set of similar methods that might be useful to the user
@@ -68,4 +68,13 @@ parameter-groups:
             Options for trimming adapters from the 3' end
 
 description : |
-    <p>Uses cutadapt to remove adapter sequences from Read Libraries</p>
+    <p> This App removes adapter sequences from reads using <a href="https://github.com/marcelm/cutadapt">cutadapt</a>.</p>
+    <p> For more information about cutadapt and usage, please see <a href="https://cutadapt.readthedocs.io/en/stable">
+    https://cutadapt.readthedocs.io/en/stable/</a></p>
+
+publications :
+    -
+        display-text : |
+            Martin, M. (2011) Cutadapt Removes Adapter Sequences From High-Throughput Sequencing Reads. EMBnet.journal, v17, n1, p10-12.
+        link: http://dx.doi.org/10.14806/ej.17.1.200
+
