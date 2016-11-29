@@ -135,8 +135,8 @@ class CutadaptUtil:
         input_file_info = self._stage_input_file(ca, params['input_reads'])
         output_file = os.path.join(self.scratch, params['output_object_name'] + '.fq')
         ca.set_output_file(output_file)
-        report = self._build_run(ca, params)
-        ca.run()
+        self._build_run(ca, params)
+        report = ca.run()
 
         return self._package_result(output_file,
                                     params['output_object_name'],
