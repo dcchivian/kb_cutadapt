@@ -24,6 +24,7 @@ class CutadaptRunner:
         self.clear_options()
 
     def clear_options(self):
+        self.interleaved = False
         self.input_filename = None
         self.output_filename = None
         self.five_prime = None
@@ -56,8 +57,13 @@ class CutadaptRunner:
     def set_min_overlap(self, overlap):
         self.overlap = int(overlap)
 
+    def set_interleaved(self, interleaved):
+        self.interleaved = interleaved
 
     def _build_adapter_removal_options(self, cmd):
+        if self.interleaved:
+            cmd.append('--interleaved')
+
         if self.three_prime:
             cmd.append('-a')
             cmd.append(self.three_prime)
@@ -166,13 +172,17 @@ class CutadaptUtil:
     def _stage_input_file(self, cutadapt_runner, ref):
 
         ru = ReadsUtils(self.callbackURL)
-        input_file = ru.download_reads({
-                                       'read_libraries': [ref],
-                                       'interleaved': 'true'
-                                       })['files'][ref]
-        file_location = input_file['files']['fwd']
+        input_file_info = ru.download_reads({
+                                            'read_libraries': [ref],
+                                            'interleaved': 'true'
+                                            })['files'][ref]
+        file_location = input_file_info['files']['fwd']
+        interleaved = False
+        if input_file_info['files']['type'] == 'interleaved':
+            interleaved = True
+        cutadapt_runner.set_interleaved(interleaved)
         cutadapt_runner.set_input_file(file_location)
-        return input_file
+        return input_file_info
 
 
     def _build_run(self, cutadapt_runner, params):
@@ -251,5 +261,6 @@ class CutadaptUtil:
 
         return {
             'report_ref': rep['ref'],
+            'report_name': rep['name'],
             'output_reads_ref': result['obj_ref']
         }
