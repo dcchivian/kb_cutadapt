@@ -35,7 +35,7 @@ class kb_cutadapt(object):
 
     def remove_adapters(self, params, context=None):
         """
-        :param params: instance of type "RemoveAdapetersParams" -> structure:
+        :param params: instance of type "RemoveAdaptersParams" -> structure:
            parameter "output_workspace" of String, parameter
            "output_object_name" of String, parameter "input_reads" of type
            "ws_ref" (@ref ws), parameter "five_prime" of type
@@ -58,7 +58,7 @@ class kb_cutadapt(object):
 
     def exec_remove_adapters(self, params, context=None):
         """
-        :param params: instance of type "RemoveAdapetersParams" -> structure:
+        :param params: instance of type "RemoveAdaptersParams" -> structure:
            parameter "output_workspace" of String, parameter
            "output_object_name" of String, parameter "input_reads" of type
            "ws_ref" (@ref ws), parameter "five_prime" of type
@@ -72,7 +72,8 @@ class kb_cutadapt(object):
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
-           parameter "output_reads_ref" of String
+           parameter "report" of String, parameter "output_reads_ref" of
+           String
         """
         return self._client.call_method(
             'kb_cutadapt.exec_remove_adapters',
@@ -80,7 +81,7 @@ class kb_cutadapt(object):
 
     def exec_remove_adapters_OneLibrary(self, params, context=None):
         """
-        :param params: instance of type "RemoveAdapetersParams" -> structure:
+        :param params: instance of type "RemoveAdaptersParams" -> structure:
            parameter "output_workspace" of String, parameter
            "output_object_name" of String, parameter "input_reads" of type
            "ws_ref" (@ref ws), parameter "five_prime" of type
@@ -94,7 +95,8 @@ class kb_cutadapt(object):
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
-           parameter "output_reads_ref" of String
+           parameter "report" of String, parameter "output_reads_ref" of
+           String
         """
         return self._client.call_method(
             'kb_cutadapt.exec_remove_adapters_OneLibrary',

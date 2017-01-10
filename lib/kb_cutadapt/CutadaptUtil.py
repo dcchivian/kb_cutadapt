@@ -246,6 +246,8 @@ class CutadaptUtil:
         ru = ReadsUtils(self.callbackURL)
         result = ru.upload_reads(upload_params)
 
+        # THE REPORT MUST BE CREATED OUTSIDE SO THAT LIBS AND SETS ARE HANDLED
+        """
         # create report
         kbreport = KBaseReport(self.callbackURL)
         rep = kbreport.create({
@@ -262,5 +264,10 @@ class CutadaptUtil:
         return {
             'report_ref': rep['ref'],
             'report_name': rep['name'],
+            'output_reads_ref': result['obj_ref']
+        }
+        """
+        return {
+            'report': report,
             'output_reads_ref': result['obj_ref']
         }

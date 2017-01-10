@@ -120,9 +120,9 @@ sub new
 =begin html
 
 <pre>
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -148,9 +148,9 @@ RemoveAdaptersResult is a reference to a hash where the following keys are defin
 
 =begin text
 
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -240,9 +240,9 @@ RemoveAdaptersResult is a reference to a hash where the following keys are defin
 =begin html
 
 <pre>
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.exec_RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -259,6 +259,7 @@ ThreePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
 	output_reads_ref has a value which is a string
 
 </pre>
@@ -267,9 +268,9 @@ exec_RemoveAdaptersResult is a reference to a hash where the following keys are 
 
 =begin text
 
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.exec_RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -286,6 +287,7 @@ ThreePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
 	output_reads_ref has a value which is a string
 
 
@@ -358,9 +360,9 @@ exec_RemoveAdaptersResult is a reference to a hash where the following keys are 
 =begin html
 
 <pre>
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.exec_RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -377,6 +379,7 @@ ThreePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
 	output_reads_ref has a value which is a string
 
 </pre>
@@ -385,9 +388,9 @@ exec_RemoveAdaptersResult is a reference to a hash where the following keys are 
 
 =begin text
 
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.exec_RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
 	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
@@ -404,6 +407,7 @@ ThreePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
 	output_reads_ref has a value which is a string
 
 
@@ -685,7 +689,7 @@ anchored_5P has a value which is a kb_cutadapt.boolean
 
 
 
-=head2 RemoveAdapetersParams
+=head2 RemoveAdaptersParams
 
 =over 4
 
@@ -771,6 +775,7 @@ output_reads_ref has a value which is a string
 
 <pre>
 a reference to a hash where the following keys are defined:
+report has a value which is a string
 output_reads_ref has a value which is a string
 
 </pre>
@@ -780,6 +785,7 @@ output_reads_ref has a value which is a string
 =begin text
 
 a reference to a hash where the following keys are defined:
+report has a value which is a string
 output_reads_ref has a value which is a string
 
 
