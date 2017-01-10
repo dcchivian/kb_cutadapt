@@ -48,7 +48,6 @@ class kb_cutadapt:
         #BEGIN_CONSTRUCTOR
         self.config = config
         self.scratch = os.path.abspath(config['scratch'])
-        self.data = os.path.abspath(config['data'])
         self.config['SDK_CALLBACK_URL'] = os.environ['SDK_CALLBACK_URL']
         if self.config['SDK_CALLBACK_URL'] == None:
             raise ValueError ("SDK_CALLBACK_URL not set in environment")
