@@ -2,7 +2,7 @@
     "ver": null,
     "contact": null,
 
-    "authors": [ "msneddon" ],
+    "authors": [ "msneddon", "dylan" ],
     "categories": ["reads"],
 
     "widgets": {
@@ -21,7 +21,8 @@
             "text_options": {
                 "valid_ws_types": [
                     "KBaseFile.PairedEndLibrary",
-                    "KBaseFile.SingleEndLibrary"
+                    "KBaseFile.SingleEndLibrary",
+		    "KBaseSets.ReadsSet"
                 ]
             }
         },
@@ -36,7 +37,8 @@
                 "is_output_name": true,
                 "valid_ws_types": [
                     "KBaseFile.PairedEndLibrary",
-                    "KBaseFile.SingleEndLibrary"
+                    "KBaseFile.SingleEndLibrary",
+		    "KBaseSets.ReadsSet"
                 ]
             }
         },
