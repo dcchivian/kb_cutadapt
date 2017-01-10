@@ -205,7 +205,7 @@ class kb_cutadapt:
             input_reads_obj_type = re.sub ('-[0-9]+\.[0-9]+$', "", input_reads_obj_type)  # remove trailing version
             #input_reads_obj_version = input_reads_obj_info[VERSION_I]  # this is object version, not type version
         except Exception as e:
-            raise ValueError('Unable to get read library object from workspace: (' + str(params['input_reads_ref']) +')' + str(e))
+            raise ValueError('Unable to get read library object from workspace: (' + str(params['input_reads']) +')' + str(e))
 
         acceptable_types = ["KBaseSets.ReadsSet", "KBaseFile.PairedEndLibrary", "KBaseFile.SingleEndLibrary"]
         if input_reads_obj_type not in acceptable_types:
