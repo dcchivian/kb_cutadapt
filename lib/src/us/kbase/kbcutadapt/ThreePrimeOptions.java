@@ -19,29 +19,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
-    "sequence_5P",
+    "adapter_sequence_5P",
     "anchored_5P"
 })
 public class ThreePrimeOptions {
 
-    @JsonProperty("sequence_5P")
-    private String sequence5P;
+    @JsonProperty("adapter_sequence_5P")
+    private String adapterSequence5P;
     @JsonProperty("anchored_5P")
     private Long anchored5P;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("sequence_5P")
-    public String getSequence5P() {
-        return sequence5P;
+    @JsonProperty("adapter_sequence_5P")
+    public String getAdapterSequence5P() {
+        return adapterSequence5P;
     }
 
-    @JsonProperty("sequence_5P")
-    public void setSequence5P(String sequence5P) {
-        this.sequence5P = sequence5P;
+    @JsonProperty("adapter_sequence_5P")
+    public void setAdapterSequence5P(String adapterSequence5P) {
+        this.adapterSequence5P = adapterSequence5P;
     }
 
-    public ThreePrimeOptions withSequence5P(String sequence5P) {
-        this.sequence5P = sequence5P;
+    public ThreePrimeOptions withAdapterSequence5P(String adapterSequence5P) {
+        this.adapterSequence5P = adapterSequence5P;
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ThreePrimeOptions {
 
     @Override
     public String toString() {
-        return ((((((("ThreePrimeOptions"+" [sequence5P=")+ sequence5P)+", anchored5P=")+ anchored5P)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((("ThreePrimeOptions"+" [adapterSequence5P=")+ adapterSequence5P)+", anchored5P=")+ anchored5P)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }

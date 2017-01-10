@@ -20,10 +20,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
     "output_workspace",
+    "output_object_name",
     "input_reads",
     "five_prime",
     "three_prime",
-    "linked_adapters",
     "error_tolerance",
     "min_overlap_length"
 })
@@ -31,6 +31,8 @@ public class RemoveAdapetersParams {
 
     @JsonProperty("output_workspace")
     private String outputWorkspace;
+    @JsonProperty("output_object_name")
+    private String outputObjectName;
     @JsonProperty("input_reads")
     private String inputReads;
     /**
@@ -51,8 +53,6 @@ public class RemoveAdapetersParams {
      */
     @JsonProperty("three_prime")
     private ThreePrimeOptions threePrime;
-    @JsonProperty("linked_adapters")
-    private Long linkedAdapters;
     @JsonProperty("error_tolerance")
     private Double errorTolerance;
     @JsonProperty("min_overlap_length")
@@ -71,6 +71,21 @@ public class RemoveAdapetersParams {
 
     public RemoveAdapetersParams withOutputWorkspace(String outputWorkspace) {
         this.outputWorkspace = outputWorkspace;
+        return this;
+    }
+
+    @JsonProperty("output_object_name")
+    public String getOutputObjectName() {
+        return outputObjectName;
+    }
+
+    @JsonProperty("output_object_name")
+    public void setOutputObjectName(String outputObjectName) {
+        this.outputObjectName = outputObjectName;
+    }
+
+    public RemoveAdapetersParams withOutputObjectName(String outputObjectName) {
+        this.outputObjectName = outputObjectName;
         return this;
     }
 
@@ -147,21 +162,6 @@ public class RemoveAdapetersParams {
         return this;
     }
 
-    @JsonProperty("linked_adapters")
-    public Long getLinkedAdapters() {
-        return linkedAdapters;
-    }
-
-    @JsonProperty("linked_adapters")
-    public void setLinkedAdapters(Long linkedAdapters) {
-        this.linkedAdapters = linkedAdapters;
-    }
-
-    public RemoveAdapetersParams withLinkedAdapters(Long linkedAdapters) {
-        this.linkedAdapters = linkedAdapters;
-        return this;
-    }
-
     @JsonProperty("error_tolerance")
     public Double getErrorTolerance() {
         return errorTolerance;
@@ -204,7 +204,7 @@ public class RemoveAdapetersParams {
 
     @Override
     public String toString() {
-        return ((((((((((((((((("RemoveAdapetersParams"+" [outputWorkspace=")+ outputWorkspace)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", linkedAdapters=")+ linkedAdapters)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((((((((((((("RemoveAdapetersParams"+" [outputWorkspace=")+ outputWorkspace)+", outputObjectName=")+ outputObjectName)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }
