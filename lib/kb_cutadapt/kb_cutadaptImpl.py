@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 #BEGIN_HEADER
 
+import sys
 import os
 
-from pprint import pprint
+from pprint import pprint, pformat
 
 from biokbase.workspace.client import Workspace as workspaceService
 
