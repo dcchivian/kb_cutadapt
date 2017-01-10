@@ -34,8 +34,7 @@ module kb_cutadapt {
         float error_tolerance;
         int min_overlap_length;
 
-    } RemoveAdapetersParams;
-
+    } RemoveAdaptersParams;
 
 
     typedef structure {
@@ -43,8 +42,18 @@ module kb_cutadapt {
         string output_reads_ref;
     } RemoveAdaptersResult;
 
+    typedef structure {
+        string output_reads_ref;
+    } exec_RemoveAdaptersResult;
+
     /*
     */
-    funcdef remove_adapters(RemoveAdapetersParams params)
+    funcdef remove_adapters(RemoveAdaptersParams params)
         returns (RemoveAdaptersResult result) authentication required;
+
+    funcdef exec_remove_adapters(RemoveAdaptersParams params)
+        returns (exec_RemoveAdaptersResult result) authentication required;
+
+    funcdef exec_remove_adapters_OneLibrary(RemoveAdaptersParams params)
+        returns (exec_RemoveAdaptersResult result) authentication required;
 };
