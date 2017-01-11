@@ -252,6 +252,9 @@ class kb_cutadapt:
             else:
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]
 
+            optional_params = [ 'float error_tolerance',
+                                'min_overlap_length'
+                                ]
             optional_g_params = { 'five_prime': [ 'adapter_sequence_5P',
                                                   'anchored_5P'
                                                   ],
@@ -259,6 +262,10 @@ class kb_cutadapt:
                                                    'anchored_3P'
                                                    ]
                                   }
+            for arg in optional_params:
+                if arg in params:
+                    exec_remove_adapters_OneLibrary_params[arg] = params[arg]
+
             for group in optional_g_params.keys():
                 if group in params:
                     exec_remove_adapters_OneLibrary_params[group] = dict()
@@ -312,7 +319,8 @@ class kb_cutadapt:
                                       })
             if some_cutadapt_output_created:
                 reads_desc_ext = " + Cutadapt"
-                reads_name_ext = "_cutadapt"
+                #reads_name_ext = "_cutadapt"
+                reads_name_ext = ""
                 output_readsSet_obj = { 'description': input_readsSet_obj['data']['description']+reads_desc_ext,
                                         'items': items
                                         }
