@@ -359,6 +359,7 @@ class kb_cutadapt:
         # ctx is the context object
         # return variables are: result
         #BEGIN exec_remove_adapters_OneLibrary
+        console = []
         self.log (console, 'Running cutadapt.remove_adapters() with parameters:')
         self.log (console, "\n"+pformat(params)+"\n")
         self.log (console, "---------------------------------------------------\n")
