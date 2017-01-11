@@ -5,7 +5,7 @@ import subprocess
 from pprint import pprint,pformat
 
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
-from KBaseReport.KBaseReportClient import KBaseReport
+#from KBaseReport.KBaseReportClient import KBaseReport
 
 
 
