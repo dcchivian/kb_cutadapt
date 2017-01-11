@@ -2,13 +2,13 @@ module-name:
     kb_cutadapt
 
 module-description:
-    A set of Apps that wrap functionality of the cutadapt tool.
+    An App that wraps the cutadapt tool for adapter trimming.
 
 service-language:
     python
 
 module-version:
-    1.0.1
+    0.0.2
 
 owners:
     [msneddon, dylan]
