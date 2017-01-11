@@ -81,7 +81,8 @@ class kb_cutadapt:
         #BEGIN remove_adapters
         console = []
         self.log(console, 'Running remove_adapters() with parameters: ')
-        self.log(console, "\n"+pformat(params))
+        self.log(console, "\n"+pformat(params)+"\n")
+        self.log(console, "-------------------------------------------\n")
 
         token = ctx['token']
         wsClient = workspaceService(self.config['workspace-url'], token=token)
@@ -169,6 +170,7 @@ class kb_cutadapt:
         console = []
         self.log(console, 'Running exec_remove_adapters() with parameters: ')
         self.log(console, "\n"+pformat(params))
+        self.log(console, "-----------------------------------------------\n")
         report = ''
         returnVal = dict()
         returnVal['output_reads_ref'] = None
@@ -242,12 +244,26 @@ class kb_cutadapt:
 
         for reads_item_i,input_reads_library_ref in enumerate(readsSet_ref_list):
             exec_remove_adapters_OneLibrary_params = { 'output_workspace': params['output_workspace'],
-                                                        'input_reads': input_reads_library_ref
+                                                       'input_reads': input_reads_library_ref
                                      }
             if input_reads_obj_type != "KBaseSets.ReadsSet":
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = params['output_object_name']
             else:
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]
+
+            optional_g_params = [ 'five_prime': [ 'adapter_sequence_5P',
+                                                  'anchored_5P'
+                                                  ],
+                                  'three_prime': [ 'adapter_sequence_3P',
+                                                   'anchored_3P'
+                                                   ]
+                                  ]
+            for group in optional_g_params:
+                if group in params:
+                    exec_remove_adapters_OneLibrary_params[group] = []
+                    for arg in optional_g_params[group]:
+                        if arg in params[group]:
+                            exec_remove_adapters_OneLibrary_params[group][arg] = params[group][arg]
 
             msg = "\n\nRUNNING exec_remove_adapters_OneLibrary() ON LIBRARY: "+str(input_reads_library_ref)+" "+str(readsSet_names_list[reads_item_i])+"\n"
             msg += "----------------------------------------------------------------------------\n"
@@ -343,8 +359,9 @@ class kb_cutadapt:
         # ctx is the context object
         # return variables are: result
         #BEGIN exec_remove_adapters_OneLibrary
-        print('Running cutadapt.remove_adapters')
-        pprint(params)
+        self.log (console, 'Running cutadapt.remove_adapters() with parameters:')
+        self.log (console, "\n"+pformat(params)+"\n")
+        self.log (console, "---------------------------------------------------\n")
 
         cutadapt = CutadaptUtil(self.config)
         result = cutadapt.remove_adapters(params)
