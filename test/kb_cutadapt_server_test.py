@@ -458,6 +458,9 @@ class kb_cutadaptTest(unittest.TestCase):
     #
     def test_basic_options_SE_Lib(self):
 
+        print ("\n\nRUNNING: test_basic_options_SE_Lib()")
+        print ("====================================\n\n")
+
         input_libs = ['cutadapt_1']
         output_name = 'trim5p.SELib'
 
@@ -489,6 +492,9 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 2: run Cutadapt against just one paired end library
     #
     def test_basic_options_PE_Lib(self):
+
+        print ("\n\nRUNNING: test_basic_options_PE_Lib()")
+        print ("====================================\n\n")
 
         input_libs = ['cutadapt_1']
         output_name = 'trim5p.PELib'
@@ -522,6 +528,9 @@ class kb_cutadaptTest(unittest.TestCase):
     #
     def test_basic_options_SE_ReadsSet(self):
 
+        print ("\n\nRUNNING: test_basic_options_SE_ReadsSet()")
+        print ("=========================================\n\n")
+
         input_libs = ['cutadapt_1','cutadapt_2']
         output_name = 'trim5p.SERS'
 
@@ -553,6 +562,9 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 4: run Cutadapt against paired end reads set
     #
     def test_basic_options_PE_ReadsSet(self):
+
+        print ("\n\nRUNNING: test_basic_options_PE_ReadsSet()")
+        print ("=========================================\n\n")
 
         input_libs = ['cutadapt_1','cutadapt_2']
         output_name = 'trim5p.PERS'
