@@ -534,7 +534,7 @@ class kb_cutadaptTest(unittest.TestCase):
         input_libs = ['cutadapt_1','cutadapt_2']
         output_name = 'trim5p.SERS'
 
-        se_lib_set_info = self.getSingleEndLibInfo(input_libs])
+        se_lib_set_info = self.getSingleEndLibInfo(input_libs)
         se_lib_set_ref = str(se_lib_info[6])+'/'+str(se_lib_set_info[0])
 
         p3 = {
@@ -569,7 +569,7 @@ class kb_cutadaptTest(unittest.TestCase):
         input_libs = ['cutadapt_1','cutadapt_2']
         output_name = 'trim5p.PERS'
 
-        pe_lib_set_info = self.getSingleEndLibInfo(input_libs])
+        pe_lib_set_info = self.getSingleEndLibInfo(input_libs)
         pe_lib_set_ref = str(pe_lib_info[6])+'/'+str(pe_lib_set_info[0])
 
         p4 = {
