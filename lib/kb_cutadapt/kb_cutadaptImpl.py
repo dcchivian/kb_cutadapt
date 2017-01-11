@@ -260,7 +260,7 @@ class kb_cutadapt:
                                   }
             for group in optional_g_params.keys():
                 if group in params:
-                    exec_remove_adapters_OneLibrary_params[group] = []
+                    exec_remove_adapters_OneLibrary_params[group] = dict()
                     for arg in optional_g_params[group]:
                         if arg in params[group]:
                             exec_remove_adapters_OneLibrary_params[group][arg] = params[group][arg]
