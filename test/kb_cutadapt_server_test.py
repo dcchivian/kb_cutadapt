@@ -119,7 +119,7 @@ class kb_cutadaptTest(unittest.TestCase):
         """
 
         header = dict()
-        header["Authorization"] = "Oauth {0}".format(cls.token)
+        header["Authorization"] = "Oauth {0}".format(cls.ctx['token'])
 
         if file_path is None:
             raise Exception("No file given for upload to SHOCK!")
@@ -147,7 +147,7 @@ class kb_cutadaptTest(unittest.TestCase):
 
     @classmethod
     def delete_shock_node(cls, node_id):
-        header = {'Authorization': 'Oauth {0}'.format(cls.token)}
+        header = {'Authorization': 'Oauth {0}'.format(cls.ctx['token'])}
         requests.delete(cls.shockURL + '/node/' + node_id, headers=header,
                         allow_redirects=True)
         print('Deleted shock node ' + node_id)
