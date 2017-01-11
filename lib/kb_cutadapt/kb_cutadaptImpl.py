@@ -11,6 +11,7 @@ from biokbase.workspace.client import Workspace as workspaceService
 
 from kb_cutadapt.CutadaptUtil import CutadaptUtil
 from SetAPI.SetAPIServiceClient import SetAPI
+from KBaseReport.KBaseReportClient import KBaseReport
 
 #END_HEADER
 
