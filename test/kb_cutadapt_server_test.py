@@ -535,7 +535,7 @@ class kb_cutadaptTest(unittest.TestCase):
         output_name = 'trim5p.SERS'
 
         se_lib_set_info = self.getSingleEndLib_SetInfo(input_libs)
-        se_lib_set_ref = str(se_lib_info[6])+'/'+str(se_lib_set_info[0])
+        se_lib_set_ref = str(se_lib_set_info[6])+'/'+str(se_lib_set_info[0])
 
         p3 = {
             'input_reads': se_lib_set_ref,
@@ -552,7 +552,7 @@ class kb_cutadaptTest(unittest.TestCase):
 
         # check the output
         single_output_name = output_name
-        info_list = self.wsClient.get_object_info([{'ref':se_lib_info[7] + '/' + single_output_name}], 1)
+        info_list = self.wsClient.get_object_info([{'ref':se_lib_set_info[7] + '/' + single_output_name}], 1)
         self.assertEqual(len(info_list),1)
         output_reads_info = info_list[0]
         self.assertEqual(output_reads_info[1],single_output_name)
@@ -570,7 +570,7 @@ class kb_cutadaptTest(unittest.TestCase):
         output_name = 'trim5p.PERS'
 
         pe_lib_set_info = self.getPairedEndLib_SetInfo(input_libs)
-        pe_lib_set_ref = str(pe_lib_info[6])+'/'+str(pe_lib_set_info[0])
+        pe_lib_set_ref = str(pe_lib_set_info[6])+'/'+str(pe_lib_set_info[0])
 
         p4 = {
             'input_reads': pe_lib_set_ref,
@@ -587,7 +587,7 @@ class kb_cutadaptTest(unittest.TestCase):
 
         # check the output
         paired_output_name = output_name
-        info_list = self.wsClient.get_object_info([{'ref':pe_lib_info[7] + '/' + paired_output_name}], 1)
+        info_list = self.wsClient.get_object_info([{'ref':pe_lib_set_info[7] + '/' + paired_output_name}], 1)
         self.assertEqual(len(info_list),1)
         output_reads_info = info_list[0]
         self.assertEqual(output_reads_info[1],paired_output_name)
