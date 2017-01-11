@@ -251,14 +251,14 @@ class kb_cutadapt:
             else:
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]
 
-            optional_g_params = [ 'five_prime': [ 'adapter_sequence_5P',
+            optional_g_params = { 'five_prime': [ 'adapter_sequence_5P',
                                                   'anchored_5P'
                                                   ],
                                   'three_prime': [ 'adapter_sequence_3P',
                                                    'anchored_3P'
                                                    ]
-                                  ]
-            for group in optional_g_params:
+                                  }
+            for group in optional_g_params.keys():
                 if group in params:
                     exec_remove_adapters_OneLibrary_params[group] = []
                     for arg in optional_g_params[group]:
