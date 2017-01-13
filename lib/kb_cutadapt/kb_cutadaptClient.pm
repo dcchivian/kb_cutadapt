@@ -120,23 +120,23 @@ sub new
 =begin html
 
 <pre>
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
+	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
 	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
-	linked_adapters has a value which is a kb_cutadapt.boolean
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
-	sequence_3P has a value which is a string
+	adapter_sequence_3P has a value which is a string
 	anchored_3P has a value which is a kb_cutadapt.boolean
 boolean is an int
 ThreePrimeOptions is a reference to a hash where the following keys are defined:
-	sequence_5P has a value which is a string
+	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 RemoveAdaptersResult is a reference to a hash where the following keys are defined:
 	report_ref has a value which is a string
@@ -148,23 +148,23 @@ RemoveAdaptersResult is a reference to a hash where the following keys are defin
 
 =begin text
 
-$params is a kb_cutadapt.RemoveAdapetersParams
+$params is a kb_cutadapt.RemoveAdaptersParams
 $result is a kb_cutadapt.RemoveAdaptersResult
-RemoveAdapetersParams is a reference to a hash where the following keys are defined:
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
 	output_workspace has a value which is a string
+	output_object_name has a value which is a string
 	input_reads has a value which is a kb_cutadapt.ws_ref
 	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
-	linked_adapters has a value which is a kb_cutadapt.boolean
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
-	sequence_3P has a value which is a string
+	adapter_sequence_3P has a value which is a string
 	anchored_3P has a value which is a kb_cutadapt.boolean
 boolean is an int
 ThreePrimeOptions is a reference to a hash where the following keys are defined:
-	sequence_5P has a value which is a string
+	adapter_sequence_5P has a value which is a string
 	anchored_5P has a value which is a kb_cutadapt.boolean
 RemoveAdaptersResult is a reference to a hash where the following keys are defined:
 	report_ref has a value which is a string
@@ -227,6 +227,246 @@ RemoveAdaptersResult is a reference to a hash where the following keys are defin
     }
 }
  
+
+
+=head2 exec_remove_adapters
+
+  $result = $obj->exec_remove_adapters($params)
+
+=over 4
+
+=item Parameter and return types
+
+=begin html
+
+<pre>
+$params is a kb_cutadapt.RemoveAdaptersParams
+$result is a kb_cutadapt.exec_RemoveAdaptersResult
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
+	output_workspace has a value which is a string
+	output_object_name has a value which is a string
+	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
+ws_ref is a string
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
+	output_reads_ref has a value which is a string
+
+</pre>
+
+=end html
+
+=begin text
+
+$params is a kb_cutadapt.RemoveAdaptersParams
+$result is a kb_cutadapt.exec_RemoveAdaptersResult
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
+	output_workspace has a value which is a string
+	output_object_name has a value which is a string
+	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
+ws_ref is a string
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
+	output_reads_ref has a value which is a string
+
+
+=end text
+
+=item Description
+
+
+
+=back
+
+=cut
+
+ sub exec_remove_adapters
+{
+    my($self, @args) = @_;
+
+# Authentication: required
+
+    if ((my $n = @args) != 1)
+    {
+	Bio::KBase::Exceptions::ArgumentValidationError->throw(error =>
+							       "Invalid argument count for function exec_remove_adapters (received $n, expecting 1)");
+    }
+    {
+	my($params) = @args;
+
+	my @_bad_arguments;
+        (ref($params) eq 'HASH') or push(@_bad_arguments, "Invalid type for argument 1 \"params\" (value was \"$params\")");
+        if (@_bad_arguments) {
+	    my $msg = "Invalid arguments passed to exec_remove_adapters:\n" . join("", map { "\t$_\n" } @_bad_arguments);
+	    Bio::KBase::Exceptions::ArgumentValidationError->throw(error => $msg,
+								   method_name => 'exec_remove_adapters');
+	}
+    }
+
+    my $url = $self->{url};
+    my $result = $self->{client}->call($url, $self->{headers}, {
+	    method => "kb_cutadapt.exec_remove_adapters",
+	    params => \@args,
+    });
+    if ($result) {
+	if ($result->is_error) {
+	    Bio::KBase::Exceptions::JSONRPC->throw(error => $result->error_message,
+					       code => $result->content->{error}->{code},
+					       method_name => 'exec_remove_adapters',
+					       data => $result->content->{error}->{error} # JSON::RPC::ReturnObject only supports JSONRPC 1.1 or 1.O
+					      );
+	} else {
+	    return wantarray ? @{$result->result} : $result->result->[0];
+	}
+    } else {
+        Bio::KBase::Exceptions::HTTP->throw(error => "Error invoking method exec_remove_adapters",
+					    status_line => $self->{client}->status_line,
+					    method_name => 'exec_remove_adapters',
+				       );
+    }
+}
+ 
+
+
+=head2 exec_remove_adapters_OneLibrary
+
+  $result = $obj->exec_remove_adapters_OneLibrary($params)
+
+=over 4
+
+=item Parameter and return types
+
+=begin html
+
+<pre>
+$params is a kb_cutadapt.RemoveAdaptersParams
+$result is a kb_cutadapt.exec_RemoveAdaptersResult
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
+	output_workspace has a value which is a string
+	output_object_name has a value which is a string
+	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
+ws_ref is a string
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
+	output_reads_ref has a value which is a string
+
+</pre>
+
+=end html
+
+=begin text
+
+$params is a kb_cutadapt.RemoveAdaptersParams
+$result is a kb_cutadapt.exec_RemoveAdaptersResult
+RemoveAdaptersParams is a reference to a hash where the following keys are defined:
+	output_workspace has a value which is a string
+	output_object_name has a value which is a string
+	input_reads has a value which is a kb_cutadapt.ws_ref
+	five_prime has a value which is a kb_cutadapt.FivePrimeOptions
+	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
+	error_tolerance has a value which is a float
+	min_overlap_length has a value which is an int
+ws_ref is a string
+FivePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_3P has a value which is a string
+	anchored_3P has a value which is a kb_cutadapt.boolean
+boolean is an int
+ThreePrimeOptions is a reference to a hash where the following keys are defined:
+	adapter_sequence_5P has a value which is a string
+	anchored_5P has a value which is a kb_cutadapt.boolean
+exec_RemoveAdaptersResult is a reference to a hash where the following keys are defined:
+	report has a value which is a string
+	output_reads_ref has a value which is a string
+
+
+=end text
+
+=item Description
+
+
+
+=back
+
+=cut
+
+ sub exec_remove_adapters_OneLibrary
+{
+    my($self, @args) = @_;
+
+# Authentication: required
+
+    if ((my $n = @args) != 1)
+    {
+	Bio::KBase::Exceptions::ArgumentValidationError->throw(error =>
+							       "Invalid argument count for function exec_remove_adapters_OneLibrary (received $n, expecting 1)");
+    }
+    {
+	my($params) = @args;
+
+	my @_bad_arguments;
+        (ref($params) eq 'HASH') or push(@_bad_arguments, "Invalid type for argument 1 \"params\" (value was \"$params\")");
+        if (@_bad_arguments) {
+	    my $msg = "Invalid arguments passed to exec_remove_adapters_OneLibrary:\n" . join("", map { "\t$_\n" } @_bad_arguments);
+	    Bio::KBase::Exceptions::ArgumentValidationError->throw(error => $msg,
+								   method_name => 'exec_remove_adapters_OneLibrary');
+	}
+    }
+
+    my $url = $self->{url};
+    my $result = $self->{client}->call($url, $self->{headers}, {
+	    method => "kb_cutadapt.exec_remove_adapters_OneLibrary",
+	    params => \@args,
+    });
+    if ($result) {
+	if ($result->is_error) {
+	    Bio::KBase::Exceptions::JSONRPC->throw(error => $result->error_message,
+					       code => $result->content->{error}->{code},
+					       method_name => 'exec_remove_adapters_OneLibrary',
+					       data => $result->content->{error}->{error} # JSON::RPC::ReturnObject only supports JSONRPC 1.1 or 1.O
+					      );
+	} else {
+	    return wantarray ? @{$result->result} : $result->result->[0];
+	}
+    } else {
+        Bio::KBase::Exceptions::HTTP->throw(error => "Error invoking method exec_remove_adapters_OneLibrary",
+					    status_line => $self->{client}->status_line,
+					    method_name => 'exec_remove_adapters_OneLibrary',
+				       );
+    }
+}
+ 
   
 sub status
 {
@@ -270,16 +510,16 @@ sub version {
             Bio::KBase::Exceptions::JSONRPC->throw(
                 error => $result->error_message,
                 code => $result->content->{code},
-                method_name => 'remove_adapters',
+                method_name => 'exec_remove_adapters_OneLibrary',
             );
         } else {
             return wantarray ? @{$result->result} : $result->result->[0];
         }
     } else {
         Bio::KBase::Exceptions::HTTP->throw(
-            error => "Error invoking method remove_adapters",
+            error => "Error invoking method exec_remove_adapters_OneLibrary",
             status_line => $self->{client}->status_line,
-            method_name => 'remove_adapters',
+            method_name => 'exec_remove_adapters_OneLibrary',
         );
     }
 }
@@ -397,7 +637,7 @@ parameters
 
 <pre>
 a reference to a hash where the following keys are defined:
-sequence_3P has a value which is a string
+adapter_sequence_3P has a value which is a string
 anchored_3P has a value which is a kb_cutadapt.boolean
 
 </pre>
@@ -407,7 +647,7 @@ anchored_3P has a value which is a kb_cutadapt.boolean
 =begin text
 
 a reference to a hash where the following keys are defined:
-sequence_3P has a value which is a string
+adapter_sequence_3P has a value which is a string
 anchored_3P has a value which is a kb_cutadapt.boolean
 
 
@@ -429,7 +669,7 @@ anchored_3P has a value which is a kb_cutadapt.boolean
 
 <pre>
 a reference to a hash where the following keys are defined:
-sequence_5P has a value which is a string
+adapter_sequence_5P has a value which is a string
 anchored_5P has a value which is a kb_cutadapt.boolean
 
 </pre>
@@ -439,7 +679,7 @@ anchored_5P has a value which is a kb_cutadapt.boolean
 =begin text
 
 a reference to a hash where the following keys are defined:
-sequence_5P has a value which is a string
+adapter_sequence_5P has a value which is a string
 anchored_5P has a value which is a kb_cutadapt.boolean
 
 
@@ -449,7 +689,7 @@ anchored_5P has a value which is a kb_cutadapt.boolean
 
 
 
-=head2 RemoveAdapetersParams
+=head2 RemoveAdaptersParams
 
 =over 4
 
@@ -462,10 +702,10 @@ anchored_5P has a value which is a kb_cutadapt.boolean
 <pre>
 a reference to a hash where the following keys are defined:
 output_workspace has a value which is a string
+output_object_name has a value which is a string
 input_reads has a value which is a kb_cutadapt.ws_ref
 five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
-linked_adapters has a value which is a kb_cutadapt.boolean
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
 
@@ -477,10 +717,10 @@ min_overlap_length has a value which is an int
 
 a reference to a hash where the following keys are defined:
 output_workspace has a value which is a string
+output_object_name has a value which is a string
 input_reads has a value which is a kb_cutadapt.ws_ref
 five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
-linked_adapters has a value which is a kb_cutadapt.boolean
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
 
@@ -514,6 +754,38 @@ output_reads_ref has a value which is a string
 
 a reference to a hash where the following keys are defined:
 report_ref has a value which is a string
+output_reads_ref has a value which is a string
+
+
+=end text
+
+=back
+
+
+
+=head2 exec_RemoveAdaptersResult
+
+=over 4
+
+
+
+=item Definition
+
+=begin html
+
+<pre>
+a reference to a hash where the following keys are defined:
+report has a value which is a string
+output_reads_ref has a value which is a string
+
+</pre>
+
+=end html
+
+=begin text
+
+a reference to a hash where the following keys are defined:
+report has a value which is a string
 output_reads_ref has a value which is a string
 
 

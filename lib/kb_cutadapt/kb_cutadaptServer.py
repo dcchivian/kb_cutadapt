@@ -333,6 +333,14 @@ class Application(object):
                              name='kb_cutadapt.remove_adapters',
                              types=[dict])
         self.method_authentication['kb_cutadapt.remove_adapters'] = 'required' # noqa
+        self.rpc_service.add(impl_kb_cutadapt.exec_remove_adapters,
+                             name='kb_cutadapt.exec_remove_adapters',
+                             types=[dict])
+        self.method_authentication['kb_cutadapt.exec_remove_adapters'] = 'required' # noqa
+        self.rpc_service.add(impl_kb_cutadapt.exec_remove_adapters_OneLibrary,
+                             name='kb_cutadapt.exec_remove_adapters_OneLibrary',
+                             types=[dict])
+        self.method_authentication['kb_cutadapt.exec_remove_adapters_OneLibrary'] = 'required' # noqa
         self.rpc_service.add(impl_kb_cutadapt.status,
                              name='kb_cutadapt.status',
                              types=[dict])

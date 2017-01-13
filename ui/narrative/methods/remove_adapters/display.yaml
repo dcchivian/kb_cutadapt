@@ -23,12 +23,12 @@ suggestions:
 #
 parameters :
     input_reads :
-        ui-name : Read Library
-        short-hint : The reads to process
+        ui-name : Input Reads
+        short-hint : The reads library (or reads set) to process
 
     output_object_name :
-        ui-name : Output Read Library
-        short-hint : Name for the output read library
+        ui-name : Output Reads
+        short-hint : Name for the output read library (or reads set)
 
     adapter_sequence_5P:
         ui-name: Sequence

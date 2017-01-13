@@ -2,10 +2,10 @@
 import os
 import subprocess
 
-from pprint import pprint
+from pprint import pprint,pformat
 
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
-from KBaseReport.KBaseReportClient import KBaseReport
+#from KBaseReport.KBaseReportClient import KBaseReport
 
 
 
@@ -128,6 +128,7 @@ class CutadaptUtil:
 
 
     def remove_adapters(self, params):
+        print ("\nPARAMS:\n"+pformat(params)+"\n")  # DEBUG
 
         self.validate_remove_adapters_parameters(params)
 
@@ -150,7 +151,9 @@ class CutadaptUtil:
             if p not in params:
                 raise ValueError('"' + p + '" parameter is required, but missing')
 
+        adapter_found = False
         if 'five_prime' in params:
+            adapter_found = True
             if 'adapter_sequence_5P' not in params['five_prime']:
                 raise ValueError('"five_prime.adapter_sequence_5P" was not defined')
             if 'anchored_5P' in params['five_prime']:
@@ -158,15 +161,17 @@ class CutadaptUtil:
                     raise ValueError('"five_prime.anchored_5P" must be either 0 or 1')
 
         if 'three_prime' in params:
+            adapter_found = True
             if 'adapter_sequence_3P' not in params['three_prime']:
                 raise ValueError('"three_prime.adapter_sequence_3P" was not defined')
             if 'anchored_3P' in params['three_prime']:
                 if params['three_prime']['anchored_3P'] not in [0, 1]:
                     raise ValueError('"three_prime.anchored_3P" must be either 0 or 1')
 
+        if not adapter_found:
+            raise ValueError ("Must configure at least one of 5' or 3' adapter")
+
         # TODO: validate values of error_tolerance and min_overlap_length
-
-
 
 
     def _stage_input_file(self, cutadapt_runner, ref):
@@ -246,6 +251,8 @@ class CutadaptUtil:
         ru = ReadsUtils(self.callbackURL)
         result = ru.upload_reads(upload_params)
 
+        # THE REPORT MUST BE CREATED OUTSIDE SO THAT LIBS AND SETS ARE HANDLED
+        """
         # create report
         kbreport = KBaseReport(self.callbackURL)
         rep = kbreport.create({
@@ -262,5 +269,10 @@ class CutadaptUtil:
         return {
             'report_ref': rep['ref'],
             'report_name': rep['name'],
+            'output_reads_ref': result['obj_ref']
+        }
+        """
+        return {
+            'report': report,
             'output_reads_ref': result['obj_ref']
         }

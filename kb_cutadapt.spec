@@ -13,13 +13,13 @@ module kb_cutadapt {
     3' and 5' options due to the current implementation of grouped
     parameters */
     typedef structure {
-        string adapter_sequence_3P;
-        boolean anchored_3P;
+        string adapter_sequence_5P;
+        boolean anchored_5P;
     } FivePrimeOptions;
 
     typedef structure {
-        string adapter_sequence_5P;
-        boolean anchored_5P;
+        string adapter_sequence_3P;
+        boolean anchored_3P;
     } ThreePrimeOptions;
 
     typedef structure {
@@ -34,8 +34,7 @@ module kb_cutadapt {
         float error_tolerance;
         int min_overlap_length;
 
-    } RemoveAdapetersParams;
-
+    } RemoveAdaptersParams;
 
 
     typedef structure {
@@ -43,8 +42,19 @@ module kb_cutadapt {
         string output_reads_ref;
     } RemoveAdaptersResult;
 
+    typedef structure {
+	string report;
+        string output_reads_ref;
+    } exec_RemoveAdaptersResult;
+
     /*
     */
-    funcdef remove_adapters(RemoveAdapetersParams params)
+    funcdef remove_adapters(RemoveAdaptersParams params)
         returns (RemoveAdaptersResult result) authentication required;
+
+    funcdef exec_remove_adapters(RemoveAdaptersParams params)
+        returns (exec_RemoveAdaptersResult result) authentication required;
+
+    funcdef exec_remove_adapters_OneLibrary(RemoveAdaptersParams params)
+        returns (exec_RemoveAdaptersResult result) authentication required;
 };

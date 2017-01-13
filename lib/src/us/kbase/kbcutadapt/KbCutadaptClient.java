@@ -166,16 +166,50 @@ public class KbCutadaptClient {
      * <p>Original spec-file function name: remove_adapters</p>
      * <pre>
      * </pre>
-     * @param   params   instance of type {@link us.kbase.kbcutadapt.RemoveAdapetersParams RemoveAdapetersParams}
+     * @param   params   instance of type {@link us.kbase.kbcutadapt.RemoveAdaptersParams RemoveAdaptersParams}
      * @return   parameter "result" of type {@link us.kbase.kbcutadapt.RemoveAdaptersResult RemoveAdaptersResult}
      * @throws IOException if an IO exception occurs
      * @throws JsonClientException if a JSON RPC exception occurs
      */
-    public RemoveAdaptersResult removeAdapters(RemoveAdapetersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
+    public RemoveAdaptersResult removeAdapters(RemoveAdaptersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
         List<Object> args = new ArrayList<Object>();
         args.add(params);
         TypeReference<List<RemoveAdaptersResult>> retType = new TypeReference<List<RemoveAdaptersResult>>() {};
         List<RemoveAdaptersResult> res = caller.jsonrpcCall("kb_cutadapt.remove_adapters", args, retType, true, true, jsonRpcContext, this.serviceVersion);
+        return res.get(0);
+    }
+
+    /**
+     * <p>Original spec-file function name: exec_remove_adapters</p>
+     * <pre>
+     * </pre>
+     * @param   params   instance of type {@link us.kbase.kbcutadapt.RemoveAdaptersParams RemoveAdaptersParams}
+     * @return   parameter "result" of type {@link us.kbase.kbcutadapt.ExecRemoveAdaptersResult ExecRemoveAdaptersResult} (original type "exec_RemoveAdaptersResult")
+     * @throws IOException if an IO exception occurs
+     * @throws JsonClientException if a JSON RPC exception occurs
+     */
+    public ExecRemoveAdaptersResult execRemoveAdapters(RemoveAdaptersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
+        List<Object> args = new ArrayList<Object>();
+        args.add(params);
+        TypeReference<List<ExecRemoveAdaptersResult>> retType = new TypeReference<List<ExecRemoveAdaptersResult>>() {};
+        List<ExecRemoveAdaptersResult> res = caller.jsonrpcCall("kb_cutadapt.exec_remove_adapters", args, retType, true, true, jsonRpcContext, this.serviceVersion);
+        return res.get(0);
+    }
+
+    /**
+     * <p>Original spec-file function name: exec_remove_adapters_OneLibrary</p>
+     * <pre>
+     * </pre>
+     * @param   params   instance of type {@link us.kbase.kbcutadapt.RemoveAdaptersParams RemoveAdaptersParams}
+     * @return   parameter "result" of type {@link us.kbase.kbcutadapt.ExecRemoveAdaptersResult ExecRemoveAdaptersResult} (original type "exec_RemoveAdaptersResult")
+     * @throws IOException if an IO exception occurs
+     * @throws JsonClientException if a JSON RPC exception occurs
+     */
+    public ExecRemoveAdaptersResult execRemoveAdaptersOneLibrary(RemoveAdaptersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
+        List<Object> args = new ArrayList<Object>();
+        args.add(params);
+        TypeReference<List<ExecRemoveAdaptersResult>> retType = new TypeReference<List<ExecRemoveAdaptersResult>>() {};
+        List<ExecRemoveAdaptersResult> res = caller.jsonrpcCall("kb_cutadapt.exec_remove_adapters_OneLibrary", args, retType, true, true, jsonRpcContext, this.serviceVersion);
         return res.get(0);
     }
 
