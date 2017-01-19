@@ -181,6 +181,7 @@ class CutadaptUtil:
                                             'read_libraries': [ref],
                                             'interleaved': 'true'
                                             })['files'][ref]
+        input_file_info['input_ref'] = ref
         file_location = input_file_info['files']['fwd']
         interleaved = False
         if input_file_info['files']['type'] == 'interleaved':
@@ -235,10 +236,13 @@ class CutadaptUtil:
             'insert_size_std_dev'
         ]
 
+        if 'input_ref' in data_info and data_info['input_ref'] != None:
+            upload_params['source_reads_ref'] = data_info['input_ref']
+        # restore else logic when source_reads_ref is working for upload_reads()
+        #else:
         for f in fields:
             if f in data_info:
                 upload_params[f] = data_info[f]
-
         if 'single_genome' in data_info:
             if data_info['single_genome'] == 'true':
                 upload_params['single_genome'] = 1
