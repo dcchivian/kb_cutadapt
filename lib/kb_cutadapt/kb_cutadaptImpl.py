@@ -263,14 +263,14 @@ class kb_cutadapt:
                                                    ]
                                   }
             for arg in optional_params:
-                if arg in params:
+                if arg in params and params[arg] != None:
                     exec_remove_adapters_OneLibrary_params[arg] = params[arg]
 
             for group in optional_g_params.keys():
-                if group in params:
+                if group in params and params[group] != None:
                     exec_remove_adapters_OneLibrary_params[group] = dict()
                     for arg in optional_g_params[group]:
-                        if arg in params[group]:
+                        if arg in params[group] and params[group][arg] != None:
                             exec_remove_adapters_OneLibrary_params[group][arg] = params[group][arg]
 
             msg = "\n\nRUNNING exec_remove_adapters_OneLibrary() ON LIBRARY: "+str(input_reads_library_ref)+" "+str(readsSet_names_list[reads_item_i])+"\n"
