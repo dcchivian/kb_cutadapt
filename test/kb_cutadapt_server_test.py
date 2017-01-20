@@ -474,7 +474,8 @@ class kb_cutadaptTest(unittest.TestCase):
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
-            }
+            },
+            'three_prime': None
         }
 
         ret = self.getImpl().remove_adapters(self.getContext(), p1)
@@ -509,7 +510,8 @@ class kb_cutadaptTest(unittest.TestCase):
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
-            }
+            },
+            'three_prime': None
         }
 
         ret = self.getImpl().remove_adapters(self.getContext(), p2)
@@ -544,7 +546,8 @@ class kb_cutadaptTest(unittest.TestCase):
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
-            }
+            },
+            'three_prime': None
         }
 
         ret = self.getImpl().remove_adapters(self.getContext(), p3)
@@ -579,7 +582,8 @@ class kb_cutadaptTest(unittest.TestCase):
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
-            }
+            },
+            'three_prime': None
         }
 
         ret = self.getImpl().remove_adapters(self.getContext(), p4)
@@ -592,3 +596,113 @@ class kb_cutadaptTest(unittest.TestCase):
         output_reads_info = info_list[0]
         self.assertEqual(output_reads_info[1],paired_output_name)
         self.assertEqual(output_reads_info[2].split('-')[0],'KBaseSets.ReadsSet')
+
+
+    ### TEST 5: run Cutadapt against just one paired end library with 3 prime adapter (anchored)
+    #
+    def test_basic_options_PE_Lib_threeprime_anchored(self):
+
+        print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_anchored()")
+        print ("========================================================\n\n")
+
+        input_libs = ['cutadapt_1']
+        output_name = 'trim3p_anchored.PELib'
+
+        pe_lib_info = self.getPairedEndLibInfo(input_libs[0])
+        pe_lib_ref = str(pe_lib_info[6])+'/'+str(pe_lib_info[0])
+
+        p2 = {
+            'input_reads': pe_lib_ref,
+            'output_workspace': self.getWsName(),
+            'output_object_name': output_name,
+            'five_prime': None,
+            'three_prime': {
+                'adapter_sequence_3P': 'ACGTACGTACGTAAA',
+                'anchored_3P': 1
+            },
+        }
+
+        ret = self.getImpl().remove_adapters(self.getContext(), p2)
+        pprint(ret)
+
+        # check the output
+        paired_output_name = output_name
+        info_list = self.wsClient.get_object_info([{'ref':pe_lib_info[7] + '/' + paired_output_name}], 1)
+        self.assertEqual(len(info_list),1)
+        output_reads_info = info_list[0]
+        self.assertEqual(output_reads_info[1],paired_output_name)
+        self.assertEqual(output_reads_info[2].split('-')[0],'KBaseFile.PairedEndLibrary')
+
+
+    ### TEST 6: run Cutadapt against just one paired end library with 3 prime adapter (unanchored)
+    #
+    def test_basic_options_PE_Lib_threeprime_UNanchored(self):
+
+        print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_UNanchored()")
+        print ("==========================================================\n\n")
+
+        input_libs = ['cutadapt_1']
+        output_name = 'trim3p_unanchored.PELib'
+
+        pe_lib_info = self.getPairedEndLibInfo(input_libs[0])
+        pe_lib_ref = str(pe_lib_info[6])+'/'+str(pe_lib_info[0])
+
+        p2 = {
+            'input_reads': pe_lib_ref,
+            'output_workspace': self.getWsName(),
+            'output_object_name': output_name,
+            'five_prime': None,
+            'three_prime': {
+                'adapter_sequence_3P': 'ACGTACGTACGT',
+                'anchored_3P': 0
+            },
+        }
+
+        ret = self.getImpl().remove_adapters(self.getContext(), p2)
+        pprint(ret)
+
+        # check the output
+        paired_output_name = output_name
+        info_list = self.wsClient.get_object_info([{'ref':pe_lib_info[7] + '/' + paired_output_name}], 1)
+        self.assertEqual(len(info_list),1)
+        output_reads_info = info_list[0]
+        self.assertEqual(output_reads_info[1],paired_output_name)
+        self.assertEqual(output_reads_info[2].split('-')[0],'KBaseFile.PairedEndLibrary')
+
+
+    ### TEST 7: run Cutadapt against just one paired end library with 5 prime unanchored
+    #
+    def test_basic_options_PE_Lib_fiveprime_UNanchored(self):
+
+        print ("\n\nRUNNING: test_basic_options_PE_Lib_fiveprime_UNanchored()")
+        print ("=========================================================\n\n")
+
+        input_libs = ['cutadapt_1']
+        output_name = 'trim5p.PELib'
+
+        pe_lib_info = self.getPairedEndLibInfo(input_libs[0])
+        pe_lib_ref = str(pe_lib_info[6])+'/'+str(pe_lib_info[0])
+
+        p2 = {
+            'input_reads': pe_lib_ref,
+            'output_workspace': self.getWsName(),
+            'output_object_name': output_name,
+            'five_prime': {
+                'adapter_sequence_5P': 'TGCAAAAACGTCTGGAAA',
+                'anchored_5P': 0
+            },
+            'three_prime': None
+        }
+
+        ret = self.getImpl().remove_adapters(self.getContext(), p2)
+        pprint(ret)
+
+        # check the output
+        paired_output_name = output_name
+        info_list = self.wsClient.get_object_info([{'ref':pe_lib_info[7] + '/' + paired_output_name}], 1)
+        self.assertEqual(len(info_list),1)
+        output_reads_info = info_list[0]
+        self.assertEqual(output_reads_info[1],paired_output_name)
+        self.assertEqual(output_reads_info[2].split('-')[0],'KBaseFile.PairedEndLibrary')
+
+
