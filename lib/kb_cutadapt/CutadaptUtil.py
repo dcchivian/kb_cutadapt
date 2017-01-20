@@ -190,6 +190,12 @@ class CutadaptUtil:
             raise ValueError ("Can't download_reads() for object type: '"+str(reads_type)+"'")
         input_file_info['input_ref'] = ref
         file_location = input_file_info['files']['fwd']
+
+        # DEBUG
+        #with open (file_location, 'r', 0)  as fasta_file:
+        #    for line in fasta_file.readlines():
+        #        print ("LINE: '"+line+"'\n")
+
         interleaved = False
         if input_file_info['files']['type'] == 'interleaved':
             interleaved = True
