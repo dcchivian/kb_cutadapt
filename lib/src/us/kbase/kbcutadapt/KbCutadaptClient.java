@@ -200,12 +200,12 @@ public class KbCutadaptClient {
      * <p>Original spec-file function name: exec_remove_adapters_OneLibrary</p>
      * <pre>
      * </pre>
-     * @param   params   instance of type {@link us.kbase.kbcutadapt.RemoveAdaptersParams RemoveAdaptersParams}
+     * @param   params   instance of type {@link us.kbase.kbcutadapt.ExecRemoveAdaptersParams ExecRemoveAdaptersParams} (original type "exec_RemoveAdaptersParams")
      * @return   parameter "result" of type {@link us.kbase.kbcutadapt.ExecRemoveAdaptersResult ExecRemoveAdaptersResult} (original type "exec_RemoveAdaptersResult")
      * @throws IOException if an IO exception occurs
      * @throws JsonClientException if a JSON RPC exception occurs
      */
-    public ExecRemoveAdaptersResult execRemoveAdaptersOneLibrary(RemoveAdaptersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
+    public ExecRemoveAdaptersResult execRemoveAdaptersOneLibrary(ExecRemoveAdaptersParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
         List<Object> args = new ArrayList<Object>();
         args.add(params);
         TypeReference<List<ExecRemoveAdaptersResult>> retType = new TypeReference<List<ExecRemoveAdaptersResult>>() {};

@@ -42,10 +42,10 @@ class kb_cutadapt(object):
            "FivePrimeOptions" (unfortunately, we have to name the fields
            uniquely between 3' and 5' options due to the current
            implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
+           "adapter_sequence_5P" of String, parameter "anchored_5P" of type
            "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "RemoveAdaptersResult" -> structure:
@@ -65,10 +65,10 @@ class kb_cutadapt(object):
            "FivePrimeOptions" (unfortunately, we have to name the fields
            uniquely between 3' and 5' options due to the current
            implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
+           "adapter_sequence_5P" of String, parameter "anchored_5P" of type
            "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
@@ -81,17 +81,17 @@ class kb_cutadapt(object):
 
     def exec_remove_adapters_OneLibrary(self, params, context=None):
         """
-        :param params: instance of type "RemoveAdaptersParams" -> structure:
-           parameter "output_workspace" of String, parameter
-           "output_object_name" of String, parameter "input_reads" of type
-           "ws_ref" (@ref ws), parameter "five_prime" of type
-           "FivePrimeOptions" (unfortunately, we have to name the fields
-           uniquely between 3' and 5' options due to the current
-           implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
-           "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+        :param params: instance of type "exec_RemoveAdaptersParams" ->
+           structure: parameter "output_workspace" of String, parameter
+           "output_object_name" of String, parameter "reads_type" of String,
+           parameter "input_reads" of type "ws_ref" (@ref ws), parameter
+           "five_prime" of type "FivePrimeOptions" (unfortunately, we have to
+           name the fields uniquely between 3' and 5' options due to the
+           current implementation of grouped parameters) -> structure:
+           parameter "adapter_sequence_5P" of String, parameter "anchored_5P"
+           of type "boolean" (@range (0, 1)), parameter "three_prime" of type
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:

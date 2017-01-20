@@ -133,7 +133,7 @@ class CutadaptUtil:
         self.validate_remove_adapters_parameters(params)
 
         ca = CutadaptRunner(self.scratch)
-        input_file_info = self._stage_input_file(ca, params['input_reads'])
+        input_file_info = self._stage_input_file(ca, params['input_reads'], params['reads_type'])
         output_file = os.path.join(self.scratch, params['output_object_name'] + '.fq')
         ca.set_output_file(output_file)
         self._build_run(ca, params)
@@ -152,7 +152,7 @@ class CutadaptUtil:
                 raise ValueError('"' + p + '" parameter is required, but missing')
 
         adapter_found = False
-        if 'five_prime' in params:
+        if 'five_prime' in params and params['five_prime'] != None:
             adapter_found = True
             if 'adapter_sequence_5P' not in params['five_prime']:
                 raise ValueError('"five_prime.adapter_sequence_5P" was not defined')
@@ -160,7 +160,7 @@ class CutadaptUtil:
                 if params['five_prime']['anchored_5P'] not in [0, 1]:
                     raise ValueError('"five_prime.anchored_5P" must be either 0 or 1')
 
-        if 'three_prime' in params:
+        if 'three_prime' in params and params['three_prime'] != None:
             adapter_found = True
             if 'adapter_sequence_3P' not in params['three_prime']:
                 raise ValueError('"three_prime.adapter_sequence_3P" was not defined')
@@ -174,15 +174,28 @@ class CutadaptUtil:
         # TODO: validate values of error_tolerance and min_overlap_length
 
 
-    def _stage_input_file(self, cutadapt_runner, ref):
+    def _stage_input_file(self, cutadapt_runner, ref, reads_type):
 
         ru = ReadsUtils(self.callbackURL)
-        input_file_info = ru.download_reads({
-                                            'read_libraries': [ref],
-                                            'interleaved': 'true'
-                                            })['files'][ref]
+        if reads_type == 'KBaseFile.PairedEndLibrary':
+            input_file_info = ru.download_reads({
+                    'read_libraries': [ref],
+                    'interleaved': 'true'
+                    })['files'][ref]
+        elif reads_type == 'KBaseFile.SingleEndLibrary':
+            input_file_info = ru.download_reads({
+                    'read_libraries': [ref]
+                    })['files'][ref]
+        else:
+            raise ValueError ("Can't download_reads() for object type: '"+str(reads_type)+"'")
         input_file_info['input_ref'] = ref
         file_location = input_file_info['files']['fwd']
+
+        # DEBUG
+        #with open (file_location, 'r', 0)  as fasta_file:
+        #    for line in fasta_file.readlines():
+        #        print ("LINE: '"+line+"'\n")
+
         interleaved = False
         if input_file_info['files']['type'] == 'interleaved':
             interleaved = True
@@ -196,11 +209,11 @@ class CutadaptUtil:
             seq = params['five_prime']['adapter_sequence_5P']
             if seq:
                 anchored = 1
-                if 'anchored_5P' in params['five_prime']:
+                if 'anchored_5P' in params['five_prime'] and params['five_prime'] != None:
                     anchored = params['five_prime']['anchored_5P']
                 cutadapt_runner.set_five_prime_option(seq, anchored)
 
-        if 'three_prime' in params:
+        if 'three_prime' in params and params['three_prime'] != None:
             seq = params['three_prime']['adapter_sequence_3P']
             if seq:
                 anchored = 0
