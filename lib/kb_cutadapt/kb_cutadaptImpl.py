@@ -257,7 +257,7 @@ class kb_cutadapt:
             if input_reads_obj_type != "KBaseSets.ReadsSet":
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = params['output_object_name']
             else:
-                exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]
+                exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]+"_cutadapt"
 
             optional_params = [ 'float error_tolerance',
                                 'min_overlap_length'
