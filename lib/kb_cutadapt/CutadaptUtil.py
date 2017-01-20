@@ -152,7 +152,7 @@ class CutadaptUtil:
                 raise ValueError('"' + p + '" parameter is required, but missing')
 
         adapter_found = False
-        if 'five_prime' in params:
+        if 'five_prime' in params and params['five_prime'] != None:
             adapter_found = True
             if 'adapter_sequence_5P' not in params['five_prime']:
                 raise ValueError('"five_prime.adapter_sequence_5P" was not defined')
@@ -160,7 +160,7 @@ class CutadaptUtil:
                 if params['five_prime']['anchored_5P'] not in [0, 1]:
                     raise ValueError('"five_prime.anchored_5P" must be either 0 or 1')
 
-        if 'three_prime' in params:
+        if 'three_prime' in params and params['three_prime'] != None:
             adapter_found = True
             if 'adapter_sequence_3P' not in params['three_prime']:
                 raise ValueError('"three_prime.adapter_sequence_3P" was not defined')
@@ -196,11 +196,11 @@ class CutadaptUtil:
             seq = params['five_prime']['adapter_sequence_5P']
             if seq:
                 anchored = 1
-                if 'anchored_5P' in params['five_prime']:
+                if 'anchored_5P' in params['five_prime'] and params['five_prime'] != None:
                     anchored = params['five_prime']['anchored_5P']
                 cutadapt_runner.set_five_prime_option(seq, anchored)
 
-        if 'three_prime' in params:
+        if 'three_prime' in params and params['three_prime'] != None:
             seq = params['three_prime']['adapter_sequence_3P']
             if seq:
                 anchored = 0
