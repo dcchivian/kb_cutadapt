@@ -187,7 +187,7 @@ class CutadaptUtil:
                     'read_libraries': [ref]
                     })['files'][ref]
         else:
-            reaise ValueError ("Can't download_reads() for object type: '"+str(reads_type)+"'")
+            raise ValueError ("Can't download_reads() for object type: '"+str(reads_type)+"'")
         input_file_info['input_ref'] = ref
         file_location = input_file_info['files']['fwd']
         interleaved = False
