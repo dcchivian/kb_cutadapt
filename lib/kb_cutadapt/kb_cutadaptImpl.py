@@ -33,7 +33,7 @@ class kb_cutadapt:
     ######################################### noqa
     VERSION = "0.0.2"
     GIT_URL = "https://github.com/dcchivian/kb_cutadapt"
-    GIT_COMMIT_HASH = "7e78e46da656119ce5232bed794031d140842264"
+    GIT_COMMIT_HASH = "ab8a940460b213435021d3b87c9f6c69e55009e9"
 
     #BEGIN_CLASS_HEADER
 
