@@ -23,44 +23,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
-    "adapter_sequence_3P",
-    "anchored_3P"
+    "adapter_sequence_5P",
+    "anchored_5P"
 })
 public class FivePrimeOptions {
 
-    @JsonProperty("adapter_sequence_3P")
-    private String adapterSequence3P;
-    @JsonProperty("anchored_3P")
-    private Long anchored3P;
+    @JsonProperty("adapter_sequence_5P")
+    private String adapterSequence5P;
+    @JsonProperty("anchored_5P")
+    private Long anchored5P;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("adapter_sequence_3P")
-    public String getAdapterSequence3P() {
-        return adapterSequence3P;
+    @JsonProperty("adapter_sequence_5P")
+    public String getAdapterSequence5P() {
+        return adapterSequence5P;
     }
 
-    @JsonProperty("adapter_sequence_3P")
-    public void setAdapterSequence3P(String adapterSequence3P) {
-        this.adapterSequence3P = adapterSequence3P;
+    @JsonProperty("adapter_sequence_5P")
+    public void setAdapterSequence5P(String adapterSequence5P) {
+        this.adapterSequence5P = adapterSequence5P;
     }
 
-    public FivePrimeOptions withAdapterSequence3P(String adapterSequence3P) {
-        this.adapterSequence3P = adapterSequence3P;
+    public FivePrimeOptions withAdapterSequence5P(String adapterSequence5P) {
+        this.adapterSequence5P = adapterSequence5P;
         return this;
     }
 
-    @JsonProperty("anchored_3P")
-    public Long getAnchored3P() {
-        return anchored3P;
+    @JsonProperty("anchored_5P")
+    public Long getAnchored5P() {
+        return anchored5P;
     }
 
-    @JsonProperty("anchored_3P")
-    public void setAnchored3P(Long anchored3P) {
-        this.anchored3P = anchored3P;
+    @JsonProperty("anchored_5P")
+    public void setAnchored5P(Long anchored5P) {
+        this.anchored5P = anchored5P;
     }
 
-    public FivePrimeOptions withAnchored3P(Long anchored3P) {
-        this.anchored3P = anchored3P;
+    public FivePrimeOptions withAnchored5P(Long anchored5P) {
+        this.anchored5P = anchored5P;
         return this;
     }
 
@@ -76,7 +76,7 @@ public class FivePrimeOptions {
 
     @Override
     public String toString() {
-        return ((((((("FivePrimeOptions"+" [adapterSequence3P=")+ adapterSequence3P)+", anchored3P=")+ anchored3P)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((("FivePrimeOptions"+" [adapterSequence5P=")+ adapterSequence5P)+", anchored5P=")+ anchored5P)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }

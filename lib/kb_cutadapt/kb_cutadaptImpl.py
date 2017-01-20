@@ -31,9 +31,9 @@ class kb_cutadapt:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "1.0.1"
+    VERSION = "0.0.2"
     GIT_URL = "https://github.com/dcchivian/kb_cutadapt"
-    GIT_COMMIT_HASH = "a53fd77dab5f6c39c25c47560375dedfb467bf7d"
+    GIT_COMMIT_HASH = "7e78e46da656119ce5232bed794031d140842264"
 
     #BEGIN_CLASS_HEADER
 
@@ -67,10 +67,10 @@ class kb_cutadapt:
            "FivePrimeOptions" (unfortunately, we have to name the fields
            uniquely between 3' and 5' options due to the current
            implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
+           "adapter_sequence_5P" of String, parameter "anchored_5P" of type
            "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "RemoveAdaptersResult" -> structure:
@@ -155,10 +155,10 @@ class kb_cutadapt:
            "FivePrimeOptions" (unfortunately, we have to name the fields
            uniquely between 3' and 5' options due to the current
            implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
+           "adapter_sequence_5P" of String, parameter "anchored_5P" of type
            "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
@@ -220,9 +220,11 @@ class kb_cutadapt:
         #
         readsSet_ref_list = []
         readsSet_names_list = []
+        readsSet_types_list = []
         if input_reads_obj_type != "KBaseSets.ReadsSet":
             readsSet_ref_list = [params['input_reads']]
             readsSet_names_list = [params['output_object_name']]
+            readsSet_types_list = [input_reads_obj_type]
         else:
             try:
                 #setAPI_Client = SetAPI (url=self.config['SDK_CALLBACK_URL'], token=ctx['token'])  # for SDK local.  doesn't work for SetAPI
@@ -234,7 +236,11 @@ class kb_cutadapt:
             for readsLibrary_obj in input_readsSet_obj['data']['items']:
                 readsSet_ref_list.append(readsLibrary_obj['ref'])
                 NAME_I = 1
+                TYPE_I = 2
                 readsSet_names_list.append(readsLibrary_obj['info'][NAME_I])
+                this_type = readsLibrary_obj['info'][TYPE_I]
+                this_type = re.sub ('-[0-9]+\.[0-9]+$', "", this_type)  # remove trailing version
+                readsSet_types_list.append(this_type)
 
 
         # Iterate through readsLibrary memebers of set
@@ -245,8 +251,9 @@ class kb_cutadapt:
 
         for reads_item_i,input_reads_library_ref in enumerate(readsSet_ref_list):
             exec_remove_adapters_OneLibrary_params = { 'output_workspace': params['output_workspace'],
-                                                       'input_reads': input_reads_library_ref
-                                     }
+                                                       'input_reads': input_reads_library_ref,
+                                                       'reads_type': readsSet_types_list[reads_item_i]
+                                                       }
             if input_reads_obj_type != "KBaseSets.ReadsSet":
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = params['output_object_name']
             else:
@@ -348,17 +355,17 @@ class kb_cutadapt:
 
     def exec_remove_adapters_OneLibrary(self, ctx, params):
         """
-        :param params: instance of type "RemoveAdaptersParams" -> structure:
-           parameter "output_workspace" of String, parameter
-           "output_object_name" of String, parameter "input_reads" of type
-           "ws_ref" (@ref ws), parameter "five_prime" of type
-           "FivePrimeOptions" (unfortunately, we have to name the fields
-           uniquely between 3' and 5' options due to the current
-           implementation of grouped parameters) -> structure: parameter
-           "adapter_sequence_3P" of String, parameter "anchored_3P" of type
-           "boolean" (@range (0, 1)), parameter "three_prime" of type
-           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_5P"
-           of String, parameter "anchored_5P" of type "boolean" (@range (0,
+        :param params: instance of type "exec_RemoveAdaptersParams" ->
+           structure: parameter "output_workspace" of String, parameter
+           "output_object_name" of String, parameter "reads_type" of String,
+           parameter "input_reads" of type "ws_ref" (@ref ws), parameter
+           "five_prime" of type "FivePrimeOptions" (unfortunately, we have to
+           name the fields uniquely between 3' and 5' options due to the
+           current implementation of grouped parameters) -> structure:
+           parameter "adapter_sequence_5P" of String, parameter "anchored_5P"
+           of type "boolean" (@range (0, 1)), parameter "three_prime" of type
+           "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
+           of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
            "min_overlap_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:

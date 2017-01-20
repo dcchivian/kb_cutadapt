@@ -133,7 +133,7 @@ class CutadaptUtil:
         self.validate_remove_adapters_parameters(params)
 
         ca = CutadaptRunner(self.scratch)
-        input_file_info = self._stage_input_file(ca, params['input_reads'])
+        input_file_info = self._stage_input_file(ca, params['input_reads'], params['reads_type'])
         output_file = os.path.join(self.scratch, params['output_object_name'] + '.fq')
         ca.set_output_file(output_file)
         self._build_run(ca, params)
@@ -174,13 +174,20 @@ class CutadaptUtil:
         # TODO: validate values of error_tolerance and min_overlap_length
 
 
-    def _stage_input_file(self, cutadapt_runner, ref):
+    def _stage_input_file(self, cutadapt_runner, ref, reads_type):
 
         ru = ReadsUtils(self.callbackURL)
-        input_file_info = ru.download_reads({
-                                            'read_libraries': [ref],
-                                            'interleaved': 'true'
-                                            })['files'][ref]
+        if reads_type == 'KBaseFile.PairedEndLibrary':
+            input_file_info = ru.download_reads({
+                    'read_libraries': [ref],
+                    'interleaved': 'true'
+                    })['files'][ref]
+        elif reads_type == 'KBaseFile.SingleEndLibrary':
+            input_file_info = ru.download_reads({
+                    'read_libraries': [ref]
+                    })['files'][ref]
+        else:
+            reaise ValueError ("Can't download_reads() for object type: '"+str(reads_type)+"'")
         input_file_info['input_ref'] = ref
         file_location = input_file_info['files']['fwd']
         interleaved = False
