@@ -3,7 +3,14 @@ MAINTAINER Michael Sneddon (mwsneddon@lbl.gov)
 
 RUN apt-get update
 RUN apt-get install -y python-coverage
-RUN pip install --upgrade ndg-httpsclient
+
+# update security libraries in the base image
+RUN pip install cffi --upgrade \
+    && pip install pyopenssl --upgrade \
+    && pip install ndg-httpsclient --upgrade \
+    && pip install pyasn1 --upgrade \
+    && pip install requests --upgrade \
+    && pip install 'requests[security]' --upgrade
 
 # update installed WS client (will now include get_objects2)
 RUN mkdir -p /kb/module && \
