@@ -2,7 +2,7 @@ module-name:
     kb_cutadapt
 
 module-description:
-    An App that wraps the cutadapt tool for adapter trimming.
+    An App that runs the cutadapt tool for adapter trimming.
 
 service-language:
     python
