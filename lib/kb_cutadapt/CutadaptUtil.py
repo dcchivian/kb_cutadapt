@@ -260,6 +260,8 @@ class CutadaptUtil:
                     upload_params['single_genome'] = 1
                 elif data_info['single_genome'] == 'false':
                     upload_params['single_genome'] = 0
+            if 'sequencing_tech' not in data_info:
+                upload_params['sequencing_tech'] = 'unknown'
 
         if data_info['files']['type'] == 'interleaved':
             upload_params['interleaved'] = 1
