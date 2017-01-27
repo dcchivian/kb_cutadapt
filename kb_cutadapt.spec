@@ -56,7 +56,7 @@ module kb_cutadapt {
     } RemoveAdaptersResult;
 
     typedef structure {
-	string report;
+        string report;
         string output_reads_ref;
     } exec_RemoveAdaptersResult;
 

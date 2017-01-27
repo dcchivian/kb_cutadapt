@@ -96,7 +96,7 @@ class kb_cutadapt:
 
         # param checks
         required_params = ['output_workspace',
-                           'input_reads', 
+                           'input_reads',
                            'output_object_name'
                           ]
         for arg in required_params:
@@ -136,7 +136,10 @@ class kb_cutadapt:
         report = KBaseReport(self.config['SDK_CALLBACK_URL'], token=ctx['token'], service_ver=SERVICE_VER)
         report_info = report.create({'report':reportObj, 'workspace_name':params['output_workspace']})
 
-        result = { 'output_reads_ref': exec_remove_adapters_retVal['output_reads_ref'], 'report_ref': report_info['ref'] }
+        result = {'output_reads_ref': exec_remove_adapters_retVal['output_reads_ref'],
+                  'report_ref': report_info['ref'],
+                  'report_name': report_info['name']
+                  }
         #END remove_adapters
 
         # At some point might do deeper type checking...
