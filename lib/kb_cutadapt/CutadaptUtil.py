@@ -249,7 +249,7 @@ class CutadaptUtil:
             'insert_size_std_dev'
         ]
 
-        if 'input_ref' in data_info and data_info['input_ref'] != None:
+        if 'input_ref' in data_info and data_info['input_ref'] != None and data_info['sequencing_tech']:
             upload_params['source_reads_ref'] = data_info['input_ref']
         else:
             for f in fields:
