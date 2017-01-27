@@ -177,12 +177,12 @@ class CutadaptUtil:
     def _stage_input_file(self, cutadapt_runner, ref, reads_type):
 
         ru = ReadsUtils(self.callbackURL)
-        if reads_type == 'KBaseFile.PairedEndLibrary':
+        if reads_type == 'KBaseFile.PairedEndLibrary' or 'KBaseAssembly.PairedEndLibrary':
             input_file_info = ru.download_reads({
                     'read_libraries': [ref],
                     'interleaved': 'true'
                     })['files'][ref]
-        elif reads_type == 'KBaseFile.SingleEndLibrary':
+        elif reads_type == 'KBaseFile.SingleEndLibrary' or 'KBaseAssembly.SingleEndLibrary':
             input_file_info = ru.download_reads({
                     'read_libraries': [ref]
                     })['files'][ref]
