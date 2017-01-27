@@ -23,8 +23,8 @@
                     "KBaseFile.PairedEndLibrary",
                     "KBaseFile.SingleEndLibrary",
                     "KBaseAssembly.PairedEndLibrary",
-                    "KBaseAssembly.SingleEndLibrary"
-		    "KBaseSets.ReadsSet"
+                    "KBaseAssembly.SingleEndLibrary",
+                    "KBaseSets.ReadsSet"
                 ]
             }
         },
@@ -41,8 +41,8 @@
                     "KBaseFile.PairedEndLibrary",
                     "KBaseFile.SingleEndLibrary",
                     "KBaseAssembly.PairedEndLibrary",
-                    "KBaseAssembly.SingleEndLibrary"
-		    "KBaseSets.ReadsSet"
+                    "KBaseAssembly.SingleEndLibrary",
+                    "KBaseSets.ReadsSet"
                 ]
             }
         },
