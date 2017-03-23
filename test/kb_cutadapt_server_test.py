@@ -23,6 +23,7 @@ from kb_cutadapt.kb_cutadaptImpl import kb_cutadapt
 from kb_cutadapt.kb_cutadaptServer import MethodContext
 
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
+from kb_cutadapt.authclient import KBaseAuth as _KBaseAuth
 
 
 class kb_cutadaptTest(unittest.TestCase):
@@ -30,9 +31,16 @@ class kb_cutadaptTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         token = environ.get('KB_AUTH_TOKEN', None)
-        user_id = requests.post(
-            'https://kbase.us/services/authorization/Sessions/Login',
-            data='token={}&fields=user_id'.format(token)).json()['user_id']
+        config_file = environ.get('KB_DEPLOYMENT_CONFIG', None)
+        cls.cfg = {}
+        config = ConfigParser()
+        config.read(config_file)
+        for nameval in config.items('kb_cutadapt'):
+            cls.cfg[nameval[0]] = nameval[1]
+        authServiceUrl = cls.cfg.get('auth-service-url',
+                "https://kbase.us/services/authorization/Sessions/Login")
+        auth_client = _KBaseAuth(authServiceUrl)
+        user_id = auth_client.get_user(token)
         # WARNING: don't call any logging methods on the context object,
         # it'll result in a NoneType error
         cls.ctx = MethodContext(None)
@@ -44,12 +52,6 @@ class kb_cutadaptTest(unittest.TestCase):
                              'method_params': []
                              }],
                         'authenticated': 1})
-        config_file = environ.get('KB_DEPLOYMENT_CONFIG', None)
-        cls.cfg = {}
-        config = ConfigParser()
-        config.read(config_file)
-        for nameval in config.items('kb_cutadapt'):
-            cls.cfg[nameval[0]] = nameval[1]
         cls.wsURL = cls.cfg['workspace-url']
         cls.shockURL = cls.cfg['shock-url']
         cls.handleURL = cls.cfg['handle-service-url']
