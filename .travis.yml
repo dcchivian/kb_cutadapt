@@ -1,0 +1,33 @@
+language: Python 
+
+sudo: required
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+before_install:
+    - docker version
+    - python --version
+
+install:
+    - git clone https://github.com/kbase/jars
+    - git clone https://github.com/kbase/kb_sdk
+    - cd kb_sdk
+    - make
+    - make sdkbase
+    - docker images
+    - export PATH=$(pwd)/bin:$PATH
+    - cd ../
+    - git clone https://github.com/kbaseapps/kb_cutadapt.git
+    - cd kb_cutadapt
+    # run the kb-sdk test command once to build test_local dir and populate the .ignore files
+    - kb-sdk test -s || true
+
+script:
+  - kb-sdk validate
+Contact GitHub API Training Shop Blog About
+
