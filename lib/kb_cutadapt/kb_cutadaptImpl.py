@@ -243,7 +243,7 @@ class kb_cutadapt:
                 readsSet_types_list.append(this_type)
 
         elif "KBaseRNASeq.RNASeqSampleSet" in input_reads_obj_type:
-            sample_set = ws.get_objects2({"objects": [{"ref": ref}]})["data"][0]["data"]
+            sample_set = ws.get_objects2({"objects": [{"ref": params['input_reads']}]})["data"][0]["data"]
             sample_refs = list()
             for i in range(len(sample_set["sample_ids"])):
                 readsSet_ref_list.append(sample_set["sample_ids"][i])
