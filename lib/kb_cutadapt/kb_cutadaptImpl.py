@@ -185,7 +185,7 @@ class kb_cutadapt:
         env = os.environ.copy()
         env['KB_AUTH_TOKEN'] = token
 
-        # param checks
+        # 0. param checks
         required_params = ['output_workspace',
                            'input_reads', 
                            'output_object_name'
@@ -194,14 +194,14 @@ class kb_cutadapt:
             if arg not in params or params[arg] == None or params[arg] == '':
                 raise ValueError ("Must define required param: '"+arg+"'")
 
-        # load provenance
+        # 1. load provenance
         provenance = [{}]
         if 'provenance' in ctx:
             provenance = ctx['provenance']
         # add additional info to provenance here, in this case the input data object reference
         provenance[0]['input_ws_objects']=[str(params['input_reads'])]
 
-        # Determine whether read library or read set is input object
+        # 2. Determine whether read library, ReadsSet or RNASeqSampleSet is input object
         #
         try:
             # object_info tuple
@@ -214,21 +214,17 @@ class kb_cutadapt:
         except Exception as e:
             raise ValueError('Unable to get read library object from workspace: (' + str(params['input_reads']) +')' + str(e))
 
-        acceptable_types = ["KBaseSets.ReadsSet", "KBaseFile.PairedEndLibrary", "KBaseFile.SingleEndLibrary", "KBaseAssembly.PairedEndLibrary", "KBaseAssembly.SingleEndLibrary"]
+        acceptable_types = ["KBaseSets.ReadsSet", "KBaseRNASeq.RNASeqSampleSet", "KBaseFile.PairedEndLibrary", "KBaseFile.SingleEndLibrary", "KBaseAssembly.PairedEndLibrary", "KBaseAssembly.SingleEndLibrary"]
         if input_reads_obj_type not in acceptable_types:
             raise ValueError ("Input reads of type: '"+input_reads_obj_type+"'.  Must be one of "+", ".join(acceptable_types))
 
 
-        # get set
+        # 3. Retrieve the set details
         #
         readsSet_ref_list = []
         readsSet_names_list = []
         readsSet_types_list = []
-        if input_reads_obj_type != "KBaseSets.ReadsSet":
-            readsSet_ref_list = [params['input_reads']]
-            readsSet_names_list = [params['output_object_name']]
-            readsSet_types_list = [input_reads_obj_type]
-        else:
+        if "KBaseSets.ReadsSet" in input_reads_obj_type:
             try:
                 #setAPI_Client = SetAPI (url=self.config['SDK_CALLBACK_URL'], token=ctx['token'])  # for SDK local.  doesn't work for SetAPI
                 setAPI_Client = SetAPI (url=self.config['service-wizard-url'], token=ctx['token'])  # for dynamic service
@@ -245,8 +241,27 @@ class kb_cutadapt:
                 this_type = re.sub ('-[0-9]+\.[0-9]+$', "", this_type)  # remove trailing version
                 readsSet_types_list.append(this_type)
 
+        elif "KBaseRNASeq.RNASeqSampleSet" in input_reads_obj_type:
+            sample_set = wsClient.get_objects2({"objects": [{"ref": ref}]})["data"][0]["data"]
+            sample_refs = list()
+            for i in range(len(sample_set["sample_ids"])):
+                readsSet_ref_list.append(sample_set["sample_ids"][i])
+                sample_refs.append({"ref": sample_set["sample_ids"][i]})
 
-        # Iterate through readsLibrary memebers of set
+            info = wsClient.get_object_info3({"objects": sample_refs})
+            for j in range(len(info["infos"])):
+                NAME_I = 1
+                TYPE_I = 2
+                readsSet_names_list.append(info["infos"][j][NAME_I])
+                sample_type = info["infos"][j][TYPE_I]
+                sample_type = re.sub ('-[0-9]+\.[0-9]+$', "", sample_type)  # remove trailing version
+                readsSet_types_list.append(sample_type)
+        else:
+            readsSet_ref_list = [params['input_reads']]
+            readsSet_names_list = [params['output_object_name']]
+            readsSet_types_list = [input_reads_obj_type]
+
+        # 4. Iterate through readsLibrary memebers of set
         #
         report = ''
         cutadapt_readsSet_ref  = None
@@ -257,7 +272,8 @@ class kb_cutadapt:
                                                        'input_reads': input_reads_library_ref,
                                                        'reads_type': readsSet_types_list[reads_item_i]
                                                        }
-            if input_reads_obj_type != "KBaseSets.ReadsSet":
+            if (input_reads_obj_type != "KBaseSets.ReadsSet" and
+                                input_reads_obj_type != "KBaseRNASeq.RNASeqSampleSet"):
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = params['output_object_name']
             else:
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]+"_cutadapt"
@@ -294,17 +310,17 @@ class kb_cutadapt:
             report += exec_remove_adapters_OneLibrary_retVal['report']+"\n\n"
             cutadapt_readsLib_refs.append (exec_remove_adapters_OneLibrary_retVal['output_reads_ref'])
 
-
+        # 5. Conclude
         # Just one Library
-        if input_reads_obj_type != "KBaseSets.ReadsSet":
+        if (input_reads_obj_type != "KBaseSets.ReadsSet" and
+                            input_reads_obj_type != "KBaseRNASeq.RNASeqSampleSet"):
 
             # create return output object
             result = { 'report': report,
                        'output_reads_ref': cutadapt_readsLib_refs[0],
                        }
-        # ReadsSet
+        # ReadsSet or SampleSet
         else:
-
             # save cutadapt readsSet
             some_cutadapt_output_created = False
             items = []

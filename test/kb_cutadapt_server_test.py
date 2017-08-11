@@ -458,6 +458,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 1: run Cutadapt against just one single end library
     #
+    # Uncomment to skip this test
+    @unittest.skip("skipped test_basic_options_SE_Lib")
     def test_basic_options_SE_Lib(self):
 
         print ("\n\nRUNNING: test_basic_options_SE_Lib()")
@@ -494,6 +496,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 2: run Cutadapt against just one paired end library
     #
+    # Uncomment to skip this test
+    @unittest.skip("skipped test_basic_options_PE_Lib")
     def test_basic_options_PE_Lib(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib()")
@@ -530,6 +534,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 3: run Cutadapt against single end reads set
     #
+    # Uncomment to skip this test
+    #@unittest.skip("skipped test_basic_options_SE_ReadsSet")
     def test_basic_options_SE_ReadsSet(self):
 
         print ("\n\nRUNNING: test_basic_options_SE_ReadsSet()")
@@ -566,6 +572,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 4: run Cutadapt against paired end reads set
     #
+    # Uncomment to skip this test
+    #@unittest.skip("skipped test_basic_options_PE_ReadsSet")
     def test_basic_options_PE_ReadsSet(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_ReadsSet()")
@@ -602,6 +610,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 5: run Cutadapt against just one paired end library with 3 prime adapter (anchored)
     #
+    # Uncomment to skip this test
+    @unittest.skip("skipped test_basic_options_PE_Lib_threeprime_anchored")
     def test_basic_options_PE_Lib_threeprime_anchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_anchored()")
@@ -638,6 +648,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 6: run Cutadapt against just one paired end library with 3 prime adapter (unanchored)
     #
+    # Uncomment to skip this test
+    @unittest.skip("skipped test_basic_options_PE_Lib_threeprime_UNanchored")
     def test_basic_options_PE_Lib_threeprime_UNanchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_UNanchored()")
@@ -674,6 +686,8 @@ class kb_cutadaptTest(unittest.TestCase):
 
     ### TEST 7: run Cutadapt against just one paired end library with 5 prime unanchored
     #
+    # Uncomment to skip this test
+    @unittest.skip("skipped test_basic_options_PE_Lib_fiveprime_UNanchored")
     def test_basic_options_PE_Lib_fiveprime_UNanchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_fiveprime_UNanchored()")
