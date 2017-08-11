@@ -336,7 +336,7 @@ class kb_cutadapt:
                         label = input_readsSet_obj['data']['items'][i]['label']
                     except:
                         NAME_I = 1
-                        label = ws.get_object_info3({'objects':[{'ref':lib_ref}]})[0][NAME_I]
+                        label = ws.get_object_info3({'objects':[{'ref':lib_ref}]})['infos'][0][NAME_I]
                     label = label + "_cutadapt"
 
                     items.append({'ref': lib_ref,
@@ -354,7 +354,7 @@ class kb_cutadapt:
                 except:
                     NAME_I = 1
                     descText = ws.get_object_info3(
-                                {'objects':[{'ref':params['input_reads']}]})[0][NAME_I]
+                                {'objects':[{'ref':params['input_reads']}]})['infos'][0][NAME_I]
                 descText = descText  + reads_desc_ext
 
                 output_readsSet_obj = { 'description': descText,
