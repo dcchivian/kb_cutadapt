@@ -182,6 +182,8 @@ class kb_cutadapt:
         token = ctx['token']
         wsClient = workspaceService(self.config['workspace-url'], token=token)
         ws = Workspace(self.config['workspace-url'], token=token)
+        #setAPI_Client = SetAPI (url=self.config['SDK_CALLBACK_URL'], token=token) # for SDK local, doesn't work for SetAPI
+        setAPI_Client = SetAPI (url=self.config['service-wizard-url'], token=token)  # for dynamic service
         headers = {'Authorization': 'OAuth '+token}
         env = os.environ.copy()
         env['KB_AUTH_TOKEN'] = token
@@ -227,8 +229,6 @@ class kb_cutadapt:
         readsSet_types_list = []
         if "KBaseSets.ReadsSet" in input_reads_obj_type:
             try:
-                #setAPI_Client = SetAPI (url=self.config['SDK_CALLBACK_URL'], token=ctx['token'])  # for SDK local.  doesn't work for SetAPI
-                setAPI_Client = SetAPI (url=self.config['service-wizard-url'], token=ctx['token'])  # for dynamic service
                 input_readsSet_obj = setAPI_Client.get_reads_set_v1 ({'ref':params['input_reads'],'include_item_info':1})
 
             except Exception as e:
