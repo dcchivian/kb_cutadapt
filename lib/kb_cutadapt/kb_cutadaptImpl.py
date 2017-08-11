@@ -8,7 +8,7 @@ import re
 from pprint import pprint, pformat
 
 from biokbase.workspace.client import Workspace as workspaceService
-
+from Workspace.WorkspaceClient import Workspace as Workspace
 from kb_cutadapt.CutadaptUtil import CutadaptUtil
 from SetAPI.SetAPIServiceClient import SetAPI
 from KBaseReport.KBaseReportClient import KBaseReport
@@ -181,6 +181,7 @@ class kb_cutadapt:
 
         token = ctx['token']
         wsClient = workspaceService(self.config['workspace-url'], token=token)
+        ws = Workspace(self.config['workspace-url'], token=token)
         headers = {'Authorization': 'OAuth '+token}
         env = os.environ.copy()
         env['KB_AUTH_TOKEN'] = token
@@ -242,13 +243,13 @@ class kb_cutadapt:
                 readsSet_types_list.append(this_type)
 
         elif "KBaseRNASeq.RNASeqSampleSet" in input_reads_obj_type:
-            sample_set = wsClient.get_objects2({"objects": [{"ref": ref}]})["data"][0]["data"]
+            sample_set = ws.get_objects2({"objects": [{"ref": ref}]})["data"][0]["data"]
             sample_refs = list()
             for i in range(len(sample_set["sample_ids"])):
                 readsSet_ref_list.append(sample_set["sample_ids"][i])
                 sample_refs.append({"ref": sample_set["sample_ids"][i]})
 
-            info = wsClient.get_object_info3({"objects": sample_refs})
+            info = ws.get_object_info3({"objects": sample_refs})
             for j in range(len(info["infos"])):
                 NAME_I = 1
                 TYPE_I = 2
