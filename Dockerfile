@@ -1,7 +1,7 @@
 FROM kbase/kbase:sdkbase.latest
 MAINTAINER KBase Developer [Michael Sneddon (mwsneddon@lbl.gov)]
 
-#RUN apt-get update
+RUN apt-get update
 #RUN apt-get install -y python-coverage
 RUN pip install coverage
 
