@@ -25,7 +25,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "five_prime",
     "three_prime",
     "error_tolerance",
-    "min_overlap_length"
+    "min_overlap_length",
+    "min_read_length"
 })
 public class RemoveAdaptersParams {
 
@@ -57,6 +58,8 @@ public class RemoveAdaptersParams {
     private Double errorTolerance;
     @JsonProperty("min_overlap_length")
     private Long minOverlapLength;
+    @JsonProperty("min_read_length")
+    private Long minReadLength;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("output_workspace")
@@ -192,6 +195,21 @@ public class RemoveAdaptersParams {
         return this;
     }
 
+    @JsonProperty("min_read_length")
+    public Long getMinReadLength() {
+        return minReadLength;
+    }
+
+    @JsonProperty("min_read_length")
+    public void setMinReadLength(Long minReadLength) {
+        this.minReadLength = minReadLength;
+    }
+
+    public RemoveAdaptersParams withMinReadLength(Long minReadLength) {
+        this.minReadLength = minReadLength;
+        return this;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -204,7 +222,7 @@ public class RemoveAdaptersParams {
 
     @Override
     public String toString() {
-        return ((((((((((((((((("RemoveAdaptersParams"+" [outputWorkspace=")+ outputWorkspace)+", outputObjectName=")+ outputObjectName)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((((((((((((((("RemoveAdaptersParams"+" [outputWorkspace=")+ outputWorkspace)+", outputObjectName=")+ outputObjectName)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", minReadLength=")+ minReadLength)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }

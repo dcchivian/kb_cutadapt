@@ -52,6 +52,9 @@ parameters :
         ui-name: Min Overlap Length
         short-hint: Minimum length required to consider a match
 
+    min_read_length:
+        ui-name: Min Read Length
+        short-hint: Minimum length of cut read to retain in output library
 
 
 parameter-groups:

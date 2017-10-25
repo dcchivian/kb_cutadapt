@@ -33,6 +33,7 @@ module kb_cutadapt {
 
         float error_tolerance;
         int min_overlap_length;
+	int min_read_length;
     } RemoveAdaptersParams;
 
     typedef structure {

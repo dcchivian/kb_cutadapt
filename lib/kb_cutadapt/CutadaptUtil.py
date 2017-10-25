@@ -31,6 +31,7 @@ class CutadaptRunner:
         self.three_prime = None
         self.err_tolerance = None
         self.overlap = None
+        self.min_read_length = None
 
 
     def set_input_file(self, filename):
@@ -57,6 +58,9 @@ class CutadaptRunner:
     def set_min_overlap(self, overlap):
         self.overlap = int(overlap)
 
+    def set_min_read_length(self, min_read_length):
+        self.min_read_length = int(min_read_length)
+
     def set_interleaved(self, interleaved):
         self.interleaved = interleaved
 
@@ -77,6 +81,9 @@ class CutadaptRunner:
 
         if self.overlap:
             cmd.append('--overlap=' + str(self.overlap))
+
+        if self.min_read_length:
+            cmd.append('--minimum-length=' + str(self.min_read_length))
 
 
     def run(self):
