@@ -459,7 +459,7 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 1: run Cutadapt against just one single end library
     #
     # Uncomment to skip this test
-    @unittest.skip("skipped test_basic_options_SE_Lib")
+    #@unittest.skip("skipped test_basic_options_SE_Lib")
     def test_basic_options_SE_Lib(self):
 
         print ("\n\nRUNNING: test_basic_options_SE_Lib()")
@@ -475,6 +475,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': se_lib_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -497,7 +498,7 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 2: run Cutadapt against just one paired end library
     #
     # Uncomment to skip this test
-    @unittest.skip("skipped test_basic_options_PE_Lib")
+    #@unittest.skip("skipped test_basic_options_PE_Lib")
     def test_basic_options_PE_Lib(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib()")
@@ -513,6 +514,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': pe_lib_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -551,6 +553,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': se_lib_set_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -589,6 +592,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': pe_lib_set_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -611,7 +615,7 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 5: run Cutadapt against just one paired end library with 3 prime adapter (anchored)
     #
     # Uncomment to skip this test
-    @unittest.skip("skipped test_basic_options_PE_Lib_threeprime_anchored")
+    #@unittest.skip("skipped test_basic_options_PE_Lib_threeprime_anchored")
     def test_basic_options_PE_Lib_threeprime_anchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_anchored()")
@@ -627,6 +631,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': pe_lib_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': None,
             'three_prime': {
                 'adapter_sequence_3P': 'ACGTACGTACGTAAA',
@@ -649,7 +654,7 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 6: run Cutadapt against just one paired end library with 3 prime adapter (unanchored)
     #
     # Uncomment to skip this test
-    @unittest.skip("skipped test_basic_options_PE_Lib_threeprime_UNanchored")
+    #@unittest.skip("skipped test_basic_options_PE_Lib_threeprime_UNanchored")
     def test_basic_options_PE_Lib_threeprime_UNanchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_threeprime_UNanchored()")
@@ -665,6 +670,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': pe_lib_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': None,
             'three_prime': {
                 'adapter_sequence_3P': 'ACGTACGTACGT',
@@ -687,7 +693,7 @@ class kb_cutadaptTest(unittest.TestCase):
     ### TEST 7: run Cutadapt against just one paired end library with 5 prime unanchored
     #
     # Uncomment to skip this test
-    @unittest.skip("skipped test_basic_options_PE_Lib_fiveprime_UNanchored")
+    #@unittest.skip("skipped test_basic_options_PE_Lib_fiveprime_UNanchored")
     def test_basic_options_PE_Lib_fiveprime_UNanchored(self):
 
         print ("\n\nRUNNING: test_basic_options_PE_Lib_fiveprime_UNanchored()")
@@ -703,6 +709,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'input_reads': pe_lib_ref,
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
+            'min_read_length': 50,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCAAAAACGTCTGGAAA',
                 'anchored_5P': 0
