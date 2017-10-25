@@ -116,6 +116,18 @@
                 "validate_as": "int",
                 "min_int" : 0
             }
+        },
+        {
+            "id": "min_read_length",
+            "optional": false,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [50],
+            "field_type" : "text",
+            "text_options" : {
+                "validate_as": "int",
+                "min_int" : 1
+            }
         }
 
     ],

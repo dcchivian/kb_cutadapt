@@ -81,20 +81,19 @@ sub new
     # We create an auth token, passing through the arguments that we were (hopefully) given.
 
     {
-	my $token = Bio::KBase::AuthToken->new(@args);
-	
-	if (!$token->error_message)
-	{
-	    $self->{token} = $token->token;
-	    $self->{client}->{token} = $token->token;
+	my %arg_hash2 = @args;
+	if (exists $arg_hash2{"token"}) {
+	    $self->{token} = $arg_hash2{"token"};
+	} elsif (exists $arg_hash2{"user_id"}) {
+	    my $token = Bio::KBase::AuthToken->new(@args);
+	    if (!$token->error_message) {
+	        $self->{token} = $token->token;
+	    }
 	}
-        else
-        {
-	    #
-	    # All methods in this module require authentication. In this case, if we
-	    # don't have a token, we can't continue.
-	    #
-	    die "Authentication failed: " . $token->error_message;
+	
+	if (exists $self->{token})
+	{
+	    $self->{client}->{token} = $self->{token};
 	}
     }
 
@@ -130,6 +129,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
+	min_read_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -158,6 +158,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
+	min_read_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -250,6 +251,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
+	min_read_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -278,6 +280,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
+	min_read_length has a value which is an int
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -710,6 +713,7 @@ five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
+min_read_length has a value which is an int
 
 </pre>
 
@@ -725,6 +729,7 @@ five_prime has a value which is a kb_cutadapt.FivePrimeOptions
 three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
+min_read_length has a value which is an int
 
 
 =end text

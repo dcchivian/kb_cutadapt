@@ -31,9 +31,9 @@ class kb_cutadapt:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "1.0.2"
-    GIT_URL = "https://github.com/rsutormin/kb_cutadapt"
-    GIT_COMMIT_HASH = "17eea51962a17da0bbc9a5cf353f785721acce87"
+    VERSION = "1.0.3"
+    GIT_URL = "https://github.com/dcchivian/kb_cutadapt"
+    GIT_COMMIT_HASH = "0a22b0c42170c49e97fc9c124038a3db49353df2"
 
     #BEGIN_CLASS_HEADER
 
@@ -72,7 +72,7 @@ class kb_cutadapt:
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long
         :returns: instance of type "RemoveAdaptersResult" -> structure:
            parameter "report_ref" of String, parameter "output_reads_ref" of
            String
@@ -97,7 +97,8 @@ class kb_cutadapt:
         # param checks
         required_params = ['output_workspace',
                            'input_reads',
-                           'output_object_name'
+                           'output_object_name',
+                           'min_read_length'
                           ]
         for arg in required_params:
             if arg not in params or params[arg] == None or params[arg] == '':
@@ -163,7 +164,7 @@ class kb_cutadapt:
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
            parameter "report" of String, parameter "output_reads_ref" of
            String
@@ -280,7 +281,8 @@ class kb_cutadapt:
                 exec_remove_adapters_OneLibrary_params['output_object_name'] = readsSet_names_list[reads_item_i]+"_cutadapt"
 
             optional_params = [ 'float error_tolerance',
-                                'min_overlap_length'
+                                'min_overlap_length',
+                                'min_read_length'
                                 ]
             optional_g_params = { 'five_prime': [ 'adapter_sequence_5P',
                                                   'anchored_5P'
