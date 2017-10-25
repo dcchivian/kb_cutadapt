@@ -1,7 +1,7 @@
 #
 # define display information
 #
-name: Remove Adapter Sequences from Reads with cutadapt
+name: cutadapt 1.14
 
 tooltip: |
     Removes 3' or 5' adapters from reads using cutadapt
@@ -23,7 +23,7 @@ suggestions:
 #
 parameters :
     input_reads :
-        ui-name : Input Reads
+        ui-name : Input Reads or ReadsSet
         short-hint : The reads library (or reads set) to process
 
     output_object_name :
@@ -35,15 +35,14 @@ parameters :
         short-hint: The Adapter sequence to match; wildcards can be marked by 'N'
     anchored_5P:
         ui-name: Anchored
-        short-hint: Anchor the match to the 5' end of each read
-
+        short-hint: Anchor the match to the 5 end of each read
 
     adapter_sequence_3P:
         ui-name: Sequence
         short-hint: The Adapter sequence to match; wildcards can be marked by 'N'
     anchored_3P:
         ui-name: Anchored
-        short-hint: Anchor the match to the 3' end of each read
+        short-hint: Anchor the match to the 3 end of each read
 
     error_tolerance:
         ui-name: Error Tolerance (Max Error Rate)

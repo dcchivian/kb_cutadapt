@@ -2,8 +2,10 @@
     "ver": null,
     "contact": null,
 
-    "authors": [ "msneddon", "dylan" ],
-    "categories": ["reads"],
+    "authors": [ "msneddon", "dylan", "qzhang" ],
+    "contact": "help@kbase.us",
+    "visible" : true,
+    "categories": ["active","reads","sequence" ],
 
     "widgets": {
         "input": null,
@@ -22,7 +24,10 @@
                 "valid_ws_types": [
                     "KBaseFile.PairedEndLibrary",
                     "KBaseFile.SingleEndLibrary",
-		    "KBaseSets.ReadsSet"
+                    "KBaseAssembly.PairedEndLibrary",
+                    "KBaseAssembly.SingleEndLibrary",
+                    "KBaseRNASeq.RNASeqSampleSet",
+                    "KBaseSets.ReadsSet"
                 ]
             }
         },
@@ -38,12 +43,13 @@
                 "valid_ws_types": [
                     "KBaseFile.PairedEndLibrary",
                     "KBaseFile.SingleEndLibrary",
-		    "KBaseSets.ReadsSet"
+                    "KBaseAssembly.PairedEndLibrary",
+                    "KBaseAssembly.SingleEndLibrary",
+                    "KBaseRNASeq.RNASeqSampleSet",
+                    "KBaseSets.ReadsSet"
                 ]
             }
         },
-
-
         {
             "id": "adapter_sequence_5P",
             "optional": false,
@@ -65,8 +71,6 @@
                 "unchecked_value": 0
             }
         },
-
-
         {
             "id": "adapter_sequence_3P",
             "optional": false,
@@ -88,8 +92,6 @@
                 "unchecked_value": 0
             }
         },
-
-
         {
             "id": "error_tolerance",
             "optional": true,
@@ -117,8 +119,6 @@
         }
 
     ],
-
-
     "parameter-groups": [
         {
             "id": "5P",
@@ -135,8 +135,6 @@
             "with_border": true 
         }
    ],
-
-
     "behavior": {
         "service-mapping": {
             "url": "",

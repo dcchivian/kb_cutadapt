@@ -8,8 +8,8 @@ service-language:
     python
 
 module-version:
-    0.0.2
+    1.0.2
 
 owners:
-    [msneddon, dylan]
+    [msneddon, dylan, qzhang]
 

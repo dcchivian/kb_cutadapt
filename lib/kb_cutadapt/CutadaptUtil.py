@@ -177,12 +177,12 @@ class CutadaptUtil:
     def _stage_input_file(self, cutadapt_runner, ref, reads_type):
 
         ru = ReadsUtils(self.callbackURL)
-        if reads_type == 'KBaseFile.PairedEndLibrary':
+        if reads_type == 'KBaseFile.PairedEndLibrary' or 'KBaseAssembly.PairedEndLibrary':
             input_file_info = ru.download_reads({
                     'read_libraries': [ref],
                     'interleaved': 'true'
                     })['files'][ref]
-        elif reads_type == 'KBaseFile.SingleEndLibrary':
+        elif reads_type == 'KBaseFile.SingleEndLibrary' or 'KBaseAssembly.SingleEndLibrary':
             input_file_info = ru.download_reads({
                     'read_libraries': [ref]
                     })['files'][ref]
@@ -249,7 +249,7 @@ class CutadaptUtil:
             'insert_size_std_dev'
         ]
 
-        if 'input_ref' in data_info and data_info['input_ref'] != None:
+        if 'input_ref' in data_info and data_info['input_ref'] != None and data_info['sequencing_tech']:
             upload_params['source_reads_ref'] = data_info['input_ref']
         else:
             for f in fields:
@@ -260,6 +260,11 @@ class CutadaptUtil:
                     upload_params['single_genome'] = 1
                 elif data_info['single_genome'] == 'false':
                     upload_params['single_genome'] = 0
+            if 'sequencing_tech' not in upload_params:
+                upload_params['sequencing_tech'] = 'unknown'
+            if not upload_params['sequencing_tech']:
+                upload_params['sequencing_tech'] = 'unknown'
+
 
         if data_info['files']['type'] == 'interleaved':
             upload_params['interleaved'] = 1

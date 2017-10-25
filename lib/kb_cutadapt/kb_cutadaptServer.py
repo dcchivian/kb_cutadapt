@@ -20,7 +20,7 @@ from kb_cutadapt.authclient import KBaseAuth as _KBaseAuth
 
 DEPLOY = 'KB_DEPLOYMENT_CONFIG'
 SERVICE = 'KB_SERVICE_NAME'
-AUTH = 'auth-server-url'
+AUTH = 'auth-service-url'
 
 # Note that the error fields do not match the 2.0 JSONRPC spec
 
@@ -109,7 +109,11 @@ class JSONRPCServiceCustom(JSONRPCService):
             # Exception was raised inside the method.
             newerr = JSONServerError()
             newerr.trace = traceback.format_exc()
-            newerr.data = e.message
+            if isinstance(e.message, basestring):
+                newerr.data = e.message
+            else:
+                # Some exceptions embed other exceptions as the message
+                newerr.data = repr(e.message)
             raise newerr
         return result
 
@@ -332,15 +336,15 @@ class Application(object):
         self.rpc_service.add(impl_kb_cutadapt.remove_adapters,
                              name='kb_cutadapt.remove_adapters',
                              types=[dict])
-        self.method_authentication['kb_cutadapt.remove_adapters'] = 'required' # noqa
+        self.method_authentication['kb_cutadapt.remove_adapters'] = 'required'  # noqa
         self.rpc_service.add(impl_kb_cutadapt.exec_remove_adapters,
                              name='kb_cutadapt.exec_remove_adapters',
                              types=[dict])
-        self.method_authentication['kb_cutadapt.exec_remove_adapters'] = 'required' # noqa
+        self.method_authentication['kb_cutadapt.exec_remove_adapters'] = 'required'  # noqa
         self.rpc_service.add(impl_kb_cutadapt.exec_remove_adapters_OneLibrary,
                              name='kb_cutadapt.exec_remove_adapters_OneLibrary',
                              types=[dict])
-        self.method_authentication['kb_cutadapt.exec_remove_adapters_OneLibrary'] = 'required' # noqa
+        self.method_authentication['kb_cutadapt.exec_remove_adapters_OneLibrary'] = 'required'  # noqa
         self.rpc_service.add(impl_kb_cutadapt.status,
                              name='kb_cutadapt.status',
                              types=[dict])
