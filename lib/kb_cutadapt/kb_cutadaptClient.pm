@@ -130,6 +130,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 	min_read_length has a value which is an int
+	discard_untrimmed has a value which is a kb_cutadapt.boolean
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -159,6 +160,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 	min_read_length has a value which is an int
+	discard_untrimmed has a value which is a kb_cutadapt.boolean
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -252,6 +254,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 	min_read_length has a value which is an int
+	discard_untrimmed has a value which is a kb_cutadapt.boolean
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -281,6 +284,7 @@ RemoveAdaptersParams is a reference to a hash where the following keys are defin
 	error_tolerance has a value which is a float
 	min_overlap_length has a value which is an int
 	min_read_length has a value which is an int
+	discard_untrimmed has a value which is a kb_cutadapt.boolean
 ws_ref is a string
 FivePrimeOptions is a reference to a hash where the following keys are defined:
 	adapter_sequence_5P has a value which is a string
@@ -714,6 +718,7 @@ three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
 min_read_length has a value which is an int
+discard_untrimmed has a value which is a kb_cutadapt.boolean
 
 </pre>
 
@@ -730,6 +735,7 @@ three_prime has a value which is a kb_cutadapt.ThreePrimeOptions
 error_tolerance has a value which is a float
 min_overlap_length has a value which is an int
 min_read_length has a value which is an int
+discard_untrimmed has a value which is a kb_cutadapt.boolean
 
 
 =end text

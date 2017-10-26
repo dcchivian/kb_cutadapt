@@ -33,7 +33,7 @@ class kb_cutadapt:
     ######################################### noqa
     VERSION = "1.0.3"
     GIT_URL = "https://github.com/dcchivian/kb_cutadapt"
-    GIT_COMMIT_HASH = "0a22b0c42170c49e97fc9c124038a3db49353df2"
+    GIT_COMMIT_HASH = "4ab5ff3528465837a2d838a433deed1f4c0012ea"
 
     #BEGIN_CLASS_HEADER
 
@@ -72,7 +72,8 @@ class kb_cutadapt:
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long, parameter "min_read_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long,
+           parameter "discard_untrimmed" of type "boolean" (@range (0, 1))
         :returns: instance of type "RemoveAdaptersResult" -> structure:
            parameter "report_ref" of String, parameter "output_reads_ref" of
            String
@@ -164,7 +165,8 @@ class kb_cutadapt:
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long, parameter "min_read_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long,
+           parameter "discard_untrimmed" of type "boolean" (@range (0, 1))
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
            parameter "report" of String, parameter "output_reads_ref" of
            String
@@ -282,7 +284,8 @@ class kb_cutadapt:
 
             optional_params = [ 'float error_tolerance',
                                 'min_overlap_length',
-                                'min_read_length'
+                                'min_read_length',
+                                'discard_untrimmed'
                                 ]
             optional_g_params = { 'five_prime': [ 'adapter_sequence_5P',
                                                   'anchored_5P'

@@ -26,7 +26,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "three_prime",
     "error_tolerance",
     "min_overlap_length",
-    "min_read_length"
+    "min_read_length",
+    "discard_untrimmed"
 })
 public class RemoveAdaptersParams {
 
@@ -60,6 +61,8 @@ public class RemoveAdaptersParams {
     private Long minOverlapLength;
     @JsonProperty("min_read_length")
     private Long minReadLength;
+    @JsonProperty("discard_untrimmed")
+    private Long discardUntrimmed;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("output_workspace")
@@ -210,6 +213,21 @@ public class RemoveAdaptersParams {
         return this;
     }
 
+    @JsonProperty("discard_untrimmed")
+    public Long getDiscardUntrimmed() {
+        return discardUntrimmed;
+    }
+
+    @JsonProperty("discard_untrimmed")
+    public void setDiscardUntrimmed(Long discardUntrimmed) {
+        this.discardUntrimmed = discardUntrimmed;
+    }
+
+    public RemoveAdaptersParams withDiscardUntrimmed(Long discardUntrimmed) {
+        this.discardUntrimmed = discardUntrimmed;
+        return this;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -222,7 +240,7 @@ public class RemoveAdaptersParams {
 
     @Override
     public String toString() {
-        return ((((((((((((((((((("RemoveAdaptersParams"+" [outputWorkspace=")+ outputWorkspace)+", outputObjectName=")+ outputObjectName)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", minReadLength=")+ minReadLength)+", additionalProperties=")+ additionalProperties)+"]");
+        return ((((((((((((((((((((("RemoveAdaptersParams"+" [outputWorkspace=")+ outputWorkspace)+", outputObjectName=")+ outputObjectName)+", inputReads=")+ inputReads)+", fivePrime=")+ fivePrime)+", threePrime=")+ threePrime)+", errorTolerance=")+ errorTolerance)+", minOverlapLength=")+ minOverlapLength)+", minReadLength=")+ minReadLength)+", discardUntrimmed=")+ discardUntrimmed)+", additionalProperties=")+ additionalProperties)+"]");
     }
 
 }

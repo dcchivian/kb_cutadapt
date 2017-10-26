@@ -56,6 +56,10 @@ parameters :
         ui-name: Min Read Length
         short-hint: Minimum length of cut read to retain in output library
 
+    discard_untrimmed:
+        ui-name: Discard Untrimmed
+        short-hint: Keep or discard reads that don't have a matching adapter
+
 
 parameter-groups:
     5P: 
