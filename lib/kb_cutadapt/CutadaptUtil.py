@@ -89,7 +89,7 @@ class CutadaptRunner:
             cmd.append('--minimum-length=' + str(self.min_read_length))
 
         if int(self.discard_untrimmed) == 1:
-            cmd.append('--discard_untrimmed')
+            cmd.append('--discard-untrimmed')
 
 
     def run(self):
