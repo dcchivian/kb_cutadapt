@@ -476,6 +476,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -515,6 +516,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -554,6 +556,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -593,6 +596,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
                 'anchored_5P': 1
@@ -632,6 +636,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': None,
             'three_prime': {
                 'adapter_sequence_3P': 'ACGTACGTACGTAAA',
@@ -671,6 +676,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': None,
             'three_prime': {
                 'adapter_sequence_3P': 'ACGTACGTACGT',
@@ -710,6 +716,7 @@ class kb_cutadaptTest(unittest.TestCase):
             'output_workspace': self.getWsName(),
             'output_object_name': output_name,
             'min_read_length': 50,
+            'discard_untrimmed': 0,
             'five_prime': {
                 'adapter_sequence_5P': 'TGCAAAAACGTCTGGAAA',
                 'anchored_5P': 0
@@ -728,4 +735,44 @@ class kb_cutadaptTest(unittest.TestCase):
         self.assertEqual(output_reads_info[1],paired_output_name)
         self.assertEqual(output_reads_info[2].split('-')[0],'KBaseFile.PairedEndLibrary')
 
+
+
+    ### TEST 2: run Cutadapt against just one paired end library
+    #
+    # Uncomment to skip this test
+    #@unittest.skip("skipped test_discard_untrimmed_option_PE_Lib")
+    def test_discard_untrimmed_option_PE_Lib(self):
+
+        print ("\n\nRUNNING: test_discard_untrimmed_option_PE_Lib()")
+        print ("===============================================\n\n")
+
+        input_libs = ['cutadapt_1']
+        output_name = 'trim5p.PELib'
+
+        pe_lib_info = self.getPairedEndLibInfo(input_libs[0])
+        pe_lib_ref = str(pe_lib_info[6])+'/'+str(pe_lib_info[0])
+
+        p2 = {
+            'input_reads': pe_lib_ref,
+            'output_workspace': self.getWsName(),
+            'output_object_name': output_name,
+            'min_read_length': 50,
+            'discard_untrimmed': 1,
+            'five_prime': {
+                'adapter_sequence_5P': 'TGCCCTGCAAAAACGTCTGGAAA',
+                'anchored_5P': 1
+            },
+            'three_prime': None
+        }
+
+        ret = self.getImpl().remove_adapters(self.getContext(), p2)
+        pprint(ret)
+
+        # check the output
+        paired_output_name = output_name
+        info_list = self.wsClient.get_object_info([{'ref':pe_lib_info[7] + '/' + paired_output_name}], 1)
+        self.assertEqual(len(info_list),1)
+        output_reads_info = info_list[0]
+        self.assertEqual(output_reads_info[1],paired_output_name)
+        self.assertEqual(output_reads_info[2].split('-')[0],'KBaseFile.PairedEndLibrary')
 
