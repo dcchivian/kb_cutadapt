@@ -128,8 +128,31 @@
                 "validate_as": "int",
                 "min_int" : 1
             }
+        },
+        {
+            "id": "discard_untrimmed",
+            "optional": true,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [0],
+            "field_type" : "dropdown",
+            "dropdown_options" : {
+                "options": [
+                                {
+                                        "value": 0,
+                                        "display": "keep reads missing adapter",
+                                        "id": "keep_reads",
+                                        "ui-name": "keep_reads"
+                                },
+                                {
+                                        "value": 1,
+                                        "display": "discard reads missing adapter",
+                                        "id": "discard_reads",
+                                        "ui-name": "discard_reads"
+                                }
+                        ]                                           
+            }
         }
-
     ],
     "parameter-groups": [
         {
@@ -181,6 +204,14 @@
                 {
                     "input_parameter": "min_overlap_length",
                     "target_property": "min_overlap_length"
+                },
+                {
+                    "input_parameter": "min_read_length",
+                    "target_property": "min_read_length"
+                },
+                {
+                    "input_parameter": "discard_untrimmed",
+                    "target_property": "discard_untrimmed"
                 }
 
             ],

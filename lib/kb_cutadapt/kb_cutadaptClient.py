@@ -47,7 +47,8 @@ class kb_cutadapt(object):
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long, parameter "min_read_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long,
+           parameter "discard_untrimmed" of type "boolean" (@range (0, 1))
         :returns: instance of type "RemoveAdaptersResult" -> structure:
            parameter "report_ref" of String, parameter "output_reads_ref" of
            String
@@ -70,7 +71,8 @@ class kb_cutadapt(object):
            "ThreePrimeOptions" -> structure: parameter "adapter_sequence_3P"
            of String, parameter "anchored_3P" of type "boolean" (@range (0,
            1)), parameter "error_tolerance" of Double, parameter
-           "min_overlap_length" of Long, parameter "min_read_length" of Long
+           "min_overlap_length" of Long, parameter "min_read_length" of Long,
+           parameter "discard_untrimmed" of type "boolean" (@range (0, 1))
         :returns: instance of type "exec_RemoveAdaptersResult" -> structure:
            parameter "report" of String, parameter "output_reads_ref" of
            String

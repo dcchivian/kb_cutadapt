@@ -1,4 +1,3 @@
-
 import os
 import subprocess
 
@@ -32,6 +31,7 @@ class CutadaptRunner:
         self.err_tolerance = None
         self.overlap = None
         self.min_read_length = None
+        self.discard_untrimmed = None
 
 
     def set_input_file(self, filename):
@@ -61,6 +61,9 @@ class CutadaptRunner:
     def set_min_read_length(self, min_read_length):
         self.min_read_length = int(min_read_length)
 
+    def set_discard_untrimmed(self, discard_untrimmed):
+        self.discard_untrimmed = int(discard_untrimmed)
+
     def set_interleaved(self, interleaved):
         self.interleaved = interleaved
 
@@ -84,6 +87,9 @@ class CutadaptRunner:
 
         if self.min_read_length:
             cmd.append('--minimum-length=' + str(self.min_read_length))
+
+        if int(self.discard_untrimmed) == 1:
+            cmd.append('--discard_untrimmed')
 
 
     def run(self):
@@ -234,6 +240,11 @@ class CutadaptUtil:
         if 'min_overlap_length' in params:
             cutadapt_runner.set_min_overlap(params['min_overlap_length'])
 
+        if 'min_read_length' in params:
+            cutadapt_runner.set_min_read_length(params['min_read_length'])
+
+        if 'discard_untrimmed' in params:
+            cutadapt_runner.set_discard_untrimmed(params['discard_untrimmed'])
 
 
     def _package_result(self, output_file, output_name, ws_name_or_id, data_info, report):
