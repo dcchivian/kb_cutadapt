@@ -1,9 +1,7 @@
 {
-    "ver": null,
-    "contact": null,
-
+    "ver": "1.0.5",
+    "contact": "http://kbase.us/contact-us/",
     "authors": [ "msneddon", "dylan", "qzhang" ],
-    "contact": "help@kbase.us",
     "visible" : true,
     "categories": ["active","reads","sequence" ],
 
