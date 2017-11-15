@@ -3,7 +3,7 @@
     "contact": "http://kbase.us/contact-us/",
     "authors": [ "msneddon", "dylan", "qzhang" ],
     "visible" : true,
-    "categories": ["active","reads","sequence" ],
+    "categories": ["active","reads"],
 
     "widgets": {
         "input": null,
