@@ -1,3 +1,7 @@
+### Verson 1.0.6
+__Changes__
+- changed citation for PLOS format
+
 ### Version 1.0.5
 __Changes__
 - changed contact from email to url
