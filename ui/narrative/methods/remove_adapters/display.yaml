@@ -1,7 +1,7 @@
 #
 # define display information
 #
-name: cutadapt - v1.14
+name: Cutadapt - v1.14
 
 tooltip: |
     Removes 3' or 5' adapters from reads using cutadapt
@@ -62,7 +62,7 @@ parameters :
 
 
 parameter-groups:
-    5P: 
+    5P:
         ui-name: |
             5' Adapter
         short-hint: |
@@ -81,6 +81,5 @@ description : |
 publications :
     -
         display-text : |
-            Martin, M. (2011) Cutadapt Removes Adapter Sequences From High-Throughput Sequencing Reads. EMBnet.journal, v17, n1, p10-12.
+            Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal. 2011;17: 10–12. doi:10.14806/ej.17.1.200
         link: http://dx.doi.org/10.14806/ej.17.1.200
-
