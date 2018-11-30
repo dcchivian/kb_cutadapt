@@ -1,3 +1,7 @@
+### Verson 1.0.7
+__Changes__
+- updated Dockerfile to sdkbase2 base image
+
 ### Verson 1.0.6
 __Changes__
 - changed citation for PLOS format

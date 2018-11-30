@@ -31,7 +31,7 @@ class kb_cutadapt:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "1.0.5"
+    VERSION = "1.0.7"
     GIT_URL = "https://github.com/kbaseapps/kb_cutadapt"
     GIT_COMMIT_HASH = "4ab5ff3528465837a2d838a433deed1f4c0012ea"
 
